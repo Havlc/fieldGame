@@ -9,7 +9,7 @@
     "dev": "nodemon app.js"
   },
   "nodemonConfig": {
-    "ext": "ejs"
+    "ext": "js,json,ejs,html"
   },
   "keywords": [],
   "author": "",
