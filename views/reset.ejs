@@ -1,0 +1,20 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <%- include ('./partials/messages') %>
+		<form action="/users/reset/<%= token %>" method="POST">
+          <legend>Więc mówisz, że zapomniałeś hasło...</legend>
+        <img src="https://mly1gplry5ce.i.optimole.com/eWijzog-l5B4aMXW/w:830/h:475/q:auto/rt:fill/g:ce/https://film.org.pl/wp-content/uploads/2020/12/jigsaw.jpg" height="300"/>
+		  <div class="form-group">
+		    <label for="password">New Password</label>
+		    <input type="password" name="password" value="" placeholder="New password" autofocus="autofocus" class="form-control"/>
+		  </div>
+		  <div class="form-group">
+		    <label for="confirm">Confirm Password</label>
+		    <input type="password" name="confirm" value="" placeholder="Confirm password" class="form-control"/>
+		  </div>
+		  <div class="form-group">
+		    <button type="submit" class="btn btn-primary">Update Password</button>
+		  </div>
+		</form>
+	</div>
+</div>

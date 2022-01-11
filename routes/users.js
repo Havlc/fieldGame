@@ -147,7 +147,7 @@ router.post('/login', (req, res, next) => {
                 from: GMAILUSER,
                 subject: 'Gra terenowa - reset hasła',
                 text: `Otrzymałeś wiadomość ponieważ została zgłoszona prośba o reset hasła. Kliknij proszę na poniższy link by zresetować hasło 
-                http://${req.headers.host}/reset/${token}\n\n Jeśli to nie Twoja prośba, zignoruj email, Twoje hasło pozostanie bez zmian`
+                http://${req.headers.host}/users/reset/${token}\n\n Jeśli to nie Twoja prośba, zignoruj email, Twoje hasło pozostanie bez zmian`
             };
             smtpTransport.sendMail(mailOptions, (err) => {
                 console.log('mail sent');
@@ -161,4 +161,69 @@ router.post('/login', (req, res, next) => {
       });
     }); 
     
+    router.get('/reset/:token', function(req, res) {
+        User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+            //console.log(user)
+          if (!user) {
+            req.flash('error', 'Token do resetu hasła jest nieprawidłowy lub wygasł.');
+            return res.redirect('/users/forgot');
+          }
+          res.render('reset', {token: req.params.token});   
+        });
+      });
+      
+      router.post('/reset/:token', function(req, res) {
+          //console.log(req.params.token)
+        async.waterfall([
+          function(done) {
+            User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+              
+              if (!user) {
+                req.flash('error', 'Token do resetu hasła jest nieprawidłowy lub wygasł.');
+                return res.redirect('back');
+              }
+              if(req.body.password === req.body.confirm) {
+                user.setPassword(req.body.password, function(err) {
+                  user.resetPasswordToken = undefined;
+                  user.resetPasswordExpires = undefined;
+      
+                  user.save(function(err) {
+                    req.logIn(user, function(err) {
+                        console.log(user.password)
+                      done(err, user);
+                    });
+                  });
+                })
+              } else {
+                  req.flash("error", "Hasła nie pasują.");
+                  return res.redirect('back');
+              }
+            });
+          },
+          function(user, done) {
+            const smtpTransport = nodemailer.createTransport({
+                service: 'Gmail',
+                auth:{ 
+                    user: GMAILUSER,
+                    pass: GMAILPW
+                 }
+            });
+            const mailOptions = {
+                to: user.email,
+                from: GMAILUSER,
+              subject: 'Twoje hasło zostało zmienione',
+              text: 'Witaj,\n\n' +
+              `Ta wiadomość to potwierdzenie, że hasło do Twojego konta ${user.email} zostało zmienione\n`
+            };
+            smtpTransport.sendMail(mailOptions, function(err) {
+              req.flash('success', 'Sukces! Twoje hasło zostało zmienione.');
+              done(err);
+            });
+          }
+        ], function(err) {
+          res.redirect('/dashboard');
+        });
+      });
+      
+
 module.exports = router;
