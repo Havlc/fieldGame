@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
     name:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     email:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },    
     password:{
         type: String,
@@ -18,7 +20,14 @@ const UserSchema = new mongoose.Schema({
         default: Date.now
     },
     rank:{
-        type: String
+        type: String,
+        default: 'szeregowy'
+    },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
+    isAdmin:{
+        type: Boolean,
+        default: false
     }
 });
 
