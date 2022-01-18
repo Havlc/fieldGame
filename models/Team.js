@@ -1,17 +1,19 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require("passport-local-mongoose");
 
-const UserSchema = new mongoose.Schema({
-    name:{
+const TeamSchema = new mongoose.Schema({
+    color: {
         type: String,
         required: true,
         unique: true
     },
-    email:{
+    name: {
         type: String,
-        required: true,
         unique: true
-    },    
+    },
+    avatar:{
+        type: String,
+    },
     password:{
         type: String,
         required: true
@@ -24,19 +26,20 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: 'szeregowy'
     },
-    team: {
-        type: String,
-        default: 'white'
-    },
+    images: [Array],
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    isAdmin:{
+    isActive:{
         type: Boolean,
         default: false
+    },
+    totalPoints: {
+        type: Number,
+        default: 0
     }
 });
 
-UserSchema.plugin(passportLocalMongoose)
-const User = mongoose.model('User', UserSchema);
+TeamSchema.plugin(passportLocalMongoose)
+const Team = mongoose.model('Team', TeamSchema);
 
-module.exports = User;
+module.exports = Team;

@@ -108,6 +108,7 @@ router.post('/login', (req, res, next) => {
   });
 
   router.post('/forgot', (req, res, next) => {
+    //zmienić na async await
     async.waterfall([
         function(done) {
             crypto.randomBytes(20, (err, buf) => {
@@ -182,37 +183,36 @@ router.post('/login', (req, res, next) => {
                 req.flash('error', 'Token do resetu hasła jest nieprawidłowy lub wygasł.');
                 return res.redirect('back');
               }
-              // NIE ZMIENIA HASŁA
               if(req.body.password === req.body.confirm) {              
                 user.setPassword(req.body.password, function(err) {
                   bcrypt.genSalt(10, function(err, salt) {
                     if (err) return /*next(*/err//);
                 
-                    console.log('old Password is ' + user.password)
+                    /*console.log('old Password is ' + user.password)
                     console.log('new Password is ' + req.body.password)
-                    console.log('Salt is ' + salt)
+                    console.log('Salt is ' + salt)*/
                     bcrypt.hash(req.body.password, salt, function(err, hash) {
                       if (err) { 
                         console.log(err)
                         return /*next(*/err//);
                       }
-                      console.log('Set new hash: ' + hash)
+                      //console.log('Set new hash: ' + hash)
                       user.password = hash;
-                      console.log("user in now " + user)
+                      //console.log("user in now " + user)
                       //next();
                     }, function(progress) {
                       if (progress === 1)
                       {
                         user.resetPasswordToken = undefined;
                         user.resetPasswordExpires = undefined;
-                        console.log(user.password)
+                        //console.log(user.password)
                         user.save(function(err) {
-                          console.log("saving to mongo this user " + user)
-                          console.log(err)
+                          /*console.log("saving to mongo this user " + user)
+                          console.log(err)*/
                           req.login(user, function(err) {
-                            console.log("Error db save")
+                            /*console.log("Error db save")
                             console.log(err)
-                            console.log(user)
+                            console.log(user)*/
                             done(err, user);
                           });
                         });
