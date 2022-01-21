@@ -12,6 +12,7 @@ require('./config/passport')(passport);
 
 // DB Config
 const db = require('./config/keys').MongoURI;
+const User = require('./models/User');
 
 // Connect to Mongo
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true})
@@ -50,7 +51,29 @@ app.use((req,res,next) => {
 // Routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/teams', require('./routes/teams'));
+app.use('/tasks', require('./routes/tasks'));
+/*
+//Team management
+pickTeam("blue")
+async function pickTeam(color){
+    try {
+        //const user = await User.findById("61e72d37a18c3fcb8da760a7")
+        const user = await User.findOne({ name: "test"})
+        console.log(user)
+        user.team = color
+        await user.save()
+        console.log(user)
+    } catch (error) {
+        console.log(error.message)
+    }
+}
 
-const PORT = process.env.PORT || 3000;
+makeTeam()
+async function makeTeam(color){
+
+}*/
+
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server running on  ${PORT}`));
