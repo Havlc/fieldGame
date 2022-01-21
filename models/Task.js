@@ -2,34 +2,34 @@ const mongoose = require('mongoose');
 //const passportLocalMongoose = require("passport-local-mongoose");
 
 const TaskSchema = new mongoose.Schema({
-    number:{
+    taskNumber:{
         type: String,
         required: true,
         unique: true
     },
     avatar:{
         type: String,
-        required: true
+        //required: true
     },
     code: {
         type: String,
-        required: true
+        //required: true
     },
     title: {
         type: String,
-        required: true
+        //required: true
     },
     type:{
         type: String,
-        required: true,
+        //required: true,
     },
     location: {
         type: String,
-        required: true,
+        //required: true,
     },
     mapImage:{
         type: String,
-        required: true
+        //required: true
     },
     qrCode: {
         type: String,
@@ -37,19 +37,19 @@ const TaskSchema = new mongoose.Schema({
     images: [Array],
     content: {
         type: String,
-        required: true
+        //required: true
     },
     firstHint:{
         type: String,
-        required: true
+        //required: true
     },
     secondHint:{
         type: String,
-        required: true
+        //required: true
     },
     solution:{
         type: String,
-        required: true
+        //required: true
     },
     pointsToEarn:{
         type: Number,
@@ -61,7 +61,7 @@ const TaskSchema = new mongoose.Schema({
     },
     visibility:{
         type: String,
-        default: hidden
+        default: 'hidden'
     }, 
     date:{
         type: Date,
