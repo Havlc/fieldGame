@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Team model
+// Task model
 const Task = require('../models/Task');
 
 // Register Page

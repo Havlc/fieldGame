@@ -1,3 +1,14 @@
 <h1 class="mt-4">Strona zadań</h1>
 <p class="lead mb-3">Witaj <%= user.rank %> <%= user.name %></p>
+<p class="mb-3">Twója drużyna: <span style="background-color: white" > <%= user.team %></span></p>
 <a href="/users/logout" class="btn btn-secondary">Wyloguj</a>
+<hr>
+<task-card name="Zadanie 1" number ="1" avatar="cwiczenieWebComponents/icons/crowd.png" >
+    <div slot="title">Porzuć nadzieję!</div>
+    <div slot="code">G01</div>
+    <div slot="content">Jak pewnie zdążyliście zauważyć znaleźliście się w obozie jenieckim. Wysłuchaj uważnie zasad jakie tu obowiązują.
+         Jak nazywa się takie zebranie przygotowawcze? </div>
+    <div slot="podpowiedz1">synonimy: audiencja, briefing, narada</div>
+    <div slot="podpowiedz2">może być biletowo-bagażowa, należy się zwolnionemu pracownikowi</div>
+    <div slot="rozwiazanie">odprawa</div>
+</task-card>
