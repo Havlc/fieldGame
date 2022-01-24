@@ -6,10 +6,10 @@ const bcrypt = require('bcryptjs');
 const Team = require('../models/Team');
 
 // Login Page
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', (req, res) => res.render('login', {layout: 'startLayout'}));
 
 // Register Page
-router.get('/registerteam', (req, res) => res.render('registerteam'));
+router.get('/registerteam', (req, res) => res.render('registerteam', {layout: 'startLayout'}));
 
 // Register post
 router.post('/registerteam', (req, res) => {
