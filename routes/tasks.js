@@ -5,12 +5,12 @@ const router = express.Router();
 const Task = require('../models/Task');
 
 // Register Page
-router.get('/registertask', (req, res) => res.render('registertask'));
+router.get('/registertask', (req, res) => res.render('registertask', {layout: 'startLayout'}));
 
 // Register post
 router.post('/registertask', (req, res) => {
     //console.log('post connected')
-    const { title, taskNumber } = req.body;
+    const { title, taskNumber, content, firstHint, secondHint, solution } = req.body;
     //console.log(req.body)
     let errors = [];
 
@@ -31,16 +31,24 @@ router.post('/registertask', (req, res) => {
             .then(task => {
                 if(task){
                     // Task exists
-                    errors.push({ msg: 'Taki zadanie już istnieje, użyj innego numeru.'})
+                    errors.push({ msg: 'Takie zadanie już istnieje, użyj innego numeru.'})
                     res.render('registertask', {
                         errors,
                         title,
-                        taskNumber
+                        taskNumber,
+                        content, 
+                        firstHint, 
+                        secondHint, 
+                        solution
                     });
                 } else {
                     let newTask = new Task({
                         title,
-                        taskNumber
+                        taskNumber,
+                        content, 
+                        firstHint, 
+                        secondHint, 
+                        solution
                     });
                             newTask.save()
                             .then(task => {
