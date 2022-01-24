@@ -28,6 +28,50 @@
               value="<%= typeof taskNumber != 'undefined' ? taskNumber : '' %>"
             />
           </div>
+          <div class="form-group">
+            <label for="title">Treść zadania</label>
+            <input
+              type="text"
+              id="content"
+              name="content"
+              class="form-control"
+              placeholder="Podaj treść zadania"
+              value="<%= typeof content != 'undefined' ? content : '' %>"
+            />
+          </div>
+            <div class="form-group">
+              <label for="title">Pierwsza podpowiedź</label>
+              <input
+                type="text"
+                id="firstHint"
+                name="firstHint"
+                class="form-control"
+                placeholder="Podaj pierwszą podpowiedź"
+                value="<%= typeof firstHint != 'undefined' ? firstHint : '' %>"
+              />
+            </div>
+              <div class="form-group">
+                <label for="title">Druga podpowiedź</label>
+                <input
+                  type="text"
+                  id="secondHint"
+                  name="secondHint"
+                  class="form-control"
+                  placeholder="Podaj drugą podpowiedź"
+                  value="<%= typeof secondHint != 'undefined' ? secondHint : '' %>"
+                />
+              </div>
+            <div class="form-group">
+                  <label for="title">Rozwiązanie</label>
+                  <input
+                    type="text"
+                    id="solution"
+                    name="solution"
+                    class="form-control"
+                    placeholder="Podaj rozwiązanie zadania"
+                    value="<%= typeof solution != 'undefined' ? solution : '' %>"
+                  />
+              </div>
           <button type="submit" class="btn btn-primary btn-block">
             Zarejestruj
           </button>
