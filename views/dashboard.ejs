@@ -1,14 +1,36 @@
 <h1 class="mt-4">Strona zadań</h1>
 <p class="lead mb-3">Witaj <%= user.rank %> <%= user.name %></p>
-<p class="mb-3">Twója drużyna: <span style="background-color: white" > <%= user.team %></span></p>
-<a href="/users/logout" class="btn btn-secondary">Wyloguj</a>
+<p class="mb-3">Twoja drużyna: <span style="background-color: white"><%= user.team %></span></p>
 <hr>
-<task-card name="Zadanie 1" number ="1" avatar="cwiczenieWebComponents/icons/crowd.png" >
-    <div slot="title">Porzuć nadzieję!</div>
-    <div slot="code">G01</div>
-    <div slot="content">Jak pewnie zdążyliście zauważyć znaleźliście się w obozie jenieckim. Wysłuchaj uważnie zasad jakie tu obowiązują.
-         Jak nazywa się takie zebranie przygotowawcze? </div>
-    <div slot="podpowiedz1">synonimy: audiencja, briefing, narada</div>
-    <div slot="podpowiedz2">może być biletowo-bagażowa, należy się zwolnionemu pracownikowi</div>
-    <div slot="rozwiazanie">odprawa</div>
-</task-card>
+<%= info %>
+<% tasks.forEach((task) => { %>
+    <div class="task-card" name="Zadanie 1" id="1" number ="1" avatar="cwiczenieWebComponents/icons/crowd.png" >
+        <img />
+        <div> 
+            <h3></h3>
+            <div class="info">
+                <p><slot name="code" /><%= task.taskNumber %></p>
+                <p><slot name="title" /><%= task.title %></p>
+                <p id="mapLocation">lokalizacja</p>
+                    <button id="showMap">pokaż na mapie</button>
+                    <img id="mapPicture" src="mapy/plan gry-komplet.png" alt="map with task location"/>
+                <p><slot name="content" /><%= task.content %></p>
+                    <button id="pdp1">Podpowiedź 1</button>
+                <p><slot name="podpowiedz1" class="hint" id="hint1" /><%= task.firstHint %></p>
+                    <button id="pdp2">Podpowiedź 2</button>
+                <p><slot name="podpowiedz2" class="hint" id="hint2" /><%= task.secondHint %></p>
+                    <button id="fix">Rozwiązanie</button>
+                <p><slot name="rozwiazanie" id="solving" style=/><%= task.solution %></p>
+                    <p><input type="text" id="inputCommit" placeholder="Tu wprowadź hasło">
+                    <button id="btnCommit" class="commit">zatwierdź</button>
+                    <button id="btnSkip">pomiń</button></p>
+                    <button id="btnApproved" style="display:none">zaliczone</button></p>
+                <p id="showCommit"><%= task._id %></p>
+                <h6 id="counter"><%= task.pointsForTask %></h6>
+            </div>
+            <button id="toggle-info">Pokaż zadanie</button>
+        </div>
+        
+    </div>
+    <hr>
+    <% }) %>
