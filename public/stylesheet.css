@@ -1,0 +1,53 @@
+    .task-card {
+		font-family: 'Arial', sans-serif;
+		background: #f4f4f4;
+		width: 500px;
+		display: grid;
+        grid-template-columns: 1fr 2fr;
+		grid-gap: 10px;
+		margin-bottom: 15px;
+		border-bottom: darkgreen 5px solid;
+	}
+    .info {
+        display: none;
+    }
+
+    .hint {
+        display: none;
+    }
+
+    #mapPicture {
+        display: none;
+    }
+
+    #solving {
+        display: none;
+    }
+
+	.task-card img {
+		width: 100%;
+	}
+    button {
+        display: inline-block;
+		cursor: pointer;
+		background: darkgreen;
+		color: #fff;
+		border: 0;
+		border-radius: 5px;
+		padding: 5px 10px;
+	}
+
+    button:hover {
+        color: white;
+        background: green;
+        border: 0px solid darkgreen;
+    }
+
+    button:disabled {
+        display: none;
+        background: darkgrey;
+    }
+
+    img {
+        height: 20vh;
+    }
