@@ -12,10 +12,10 @@ const User = require('../models/User');
 const { GMAILUSER, GMAILPW } = require('../config/keys');
 
 // Login Page
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', (req, res) => res.render('login', {layout: 'startLayout'}));
 
 // Register Page
-router.get('/register', (req, res) => res.render('register'));
+router.get('/register', (req, res) => res.render('register', {layout: 'startLayout'}));
 
 // Register post
 router.post('/register', (req, res) => {
@@ -104,7 +104,7 @@ router.post('/login', (req, res, next) => {
 
   // Forgot password
   router.get('/forgot', (req, res) => {
-      res.render('forgot');
+      res.render('forgot', {layout: 'startLayout'});
   });
 
   router.post('/forgot', (req, res, next) => {
