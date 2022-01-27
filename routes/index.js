@@ -3,6 +3,12 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 const Task = require('../models/Task');
 
+//Add JSDOM
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const dom = new JSDOM(`<!DOCTYPE html><p>JSDOM Connected</p>`);
+console.log(dom.window.document.querySelector("p").textContent);
+
 // Welcome page
 router.get(('/'), (req, res) => res.render('landing', {layout: 'startLayout'}));
 
