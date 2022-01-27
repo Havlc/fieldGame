@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gra terenowa - zadania</title>
+    <link
+    rel="stylesheet"
+    href="https://bootswatch.com/4/slate/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<br>
+    <h6 >STREFA ZAWODNIKA</h6>
+    <h6 id="rankName">szeregowy</h6>
+    <img id="rankImg" alt="naramiennik" src="ranks/Szeregowy.png" height="40" />
+    <h6><span id="teamName">login-team name</span></h6>
+    <hr>
+    <h6>STREFA ZADAŃ</h6>
+    <hr>
+  
+    <task-card name="Zadanie 1" number ="1" avatar="icons/crowd.png" >
+            <div slot="title">Porzuć nadzieję!</div>
+            <div slot="code">G01</div>
+            <div slot="content">Jak pewnie zdążyliście zauważyć znaleźliście się w obozie jenieckim. Wysłuchaj uważnie zasad jakie tu obowiązują.
+                 Jak nazywa się takie zebranie przygotowawcze? </div>
+            <div slot="podpowiedz1">synonimy: audiencja, briefing, narada</div>
+            <div slot="podpowiedz2">może być biletowo-bagażowa, należy się zwolnionemu pracownikowi</div>
+            <div slot="rozwiazanie">odprawa</div>
+        </task-card>
+        <task-card name="Zadanie 2" number ="2" avatar="icons/anonymous.jpg" >
+            <div slot="number">2</div>
+            <div slot="title">legenda</div>
+            <div slot="code">G02</div>
+            <div slot="content">Twoja przeszłość jest przeszkodą w pozostaniu przy życiu w obozie. Gdy tylko śledczy odkryją kim jesteś - zginiesz.
+                 Musisz jak najszybciej wymyśleć nową tożsamość i wypełnić dokumenty ale pamiętaj! musisz wiedzieć kim jesteś nawet obudzony w środku nocy...</div>
+            <div slot="podpowiedz1">Twoje nowe dane muszą być łatwe do zapamiętania ale różnić się od Twoich prawdziwych,</div>
+            <div slot="podpowiedz2">Musisz jak najmniej rzucać się w oczy, jeśli zostaniesz uznany za inteligenta, zostaniesz rozstrzelany.
+                 Wybierz zawód, który nie zwraca uwagi.</div>
+            <div slot="rozwiazanie">drwal</div>
+        </task-card>
+        <task-card name="Zadanie 3" number ="3" avatar="icons/abc.png" >
+            <div slot="number">3</div>
+            <div slot="title">spotkanie</div>
+            <div slot="code">G03</div>
+            <div slot="content">Strażnik, który sprawdzał Waszą tożsamość współpracuje z nami. Dostaliście od niego taśmę w kolorze drużyny, do której musicie dołączyć.
+                 Na terenie obozu znajduje się miejsca gdzie się spotkają. Znajdź je ale pamiętaj, dopóki tam się nie znajdziesz nikt nie może wiedzieć jaki jest Twój kolor. </div>
+            <div slot="podpowiedz1">wejścia do pomieszczeń, w których odbywają się spotkania są oznaczone kolorem zgodnym z Twoim</div>
+            <div slot="podpowiedz2">spotkania odbywają się w warsztacie, kurniku, u Maryny, hasło to pomieszczenie inaczej lub wysoka w parlamencie</div>
+            <div slot="rozwiazanie">izba</div>
+        </task-card>
+            <task-card name="Zadanie 4" number ="4" avatar="icons/name.png" >
+            <div slot="number">4</div>
+            <div slot="title">formacja</div>
+            <div slot="code"></div>
+            <div slot="content">Poznaliście nowych toważyszy niedoli, od teraz do czasu wyzwolenia to Wasza nowa i jedyna rodzina. Wymyślcie nazwę Waszej drużyny
+                 - będzie Waszym kodem wywoławczym</div>
+            <div slot="podpowiedz1">Nazwa powinna być krótka i być istniejącym wyrazem</div>
+            <div slot="podpowiedz2">Nazwa ze względu na konieczność posługiwania się szyframi nie powinna zawierać polskich znaków</div>
+            <div slot="rozwiazanie">czerwoni</div>
+        </task-card>
+        <task-card name="Zadanie 5" number ="5" avatar="icons/flag.jpg">
+            <div slot="number">5</div>
+            <div slot="title">mały sabotaż</div>
+            <div slot="code"></div>
+            <div slot="content">Na terenie obozu znajdują się flagi okupanta. Przyjrzyjcie się im i zniszczcie wszystkie poprzez oznaczenie kolorem swojej drużyny.
+                 Nie zrywajcie ich! jeśli zauważą brak, obóz zostanie sprawdzony przez strażników.</div>
+            <div slot="podpowiedz1">Flag szukajcie nad wejściami do pomieszczeń </div>
+            <div slot="podpowiedz2">Flagi znajdują się nad wejściami do domu, warsztatu, stajni, kurnika, Maryny, toalet, blaszaka. Hasło to ułożycie z liter odczytanych
+                 na flagach.  </div>
+            <div slot="rozwiazanie">wolność</div>
+        </task-card>
+        <task-card name="Zadanie 6" number ="6" avatar="icons/map-2.png">
+            <div slot="number">6</div>
+            <div slot="title">mapa</div>
+            <div slot="code"></div>
+            <div slot="content">Teraz już wiecie o co walczymy. Macie wybór albo Nas wspieracie albo zostajecie i czekacie aż okupanci pozbawią Was życia.
+                Wybór jest prosty. Komendant obozu zostawił uchylone drzwi do swojego pokoju. Przeszukajcie go i odszukajcie mapę. Będzie potrzebna do poruszania 
+                się po okolicznym terenie po ucieczce z obozu. Zabierzcie tylko 1 egzemplarz! Wpiszcie miejsce/rzecz z którego mapa została zabrana</div>
+            <div slot="podpowiedz1">komendant lubi mieć mapę przy sobie, w miejscu gdzie pracuje, a czasem tylko patrzeć na nią z daleka</div>
+            <div slot="podpowiedz2">przeszukaj kieszenie, popatrz na ściany, zajrzyj do szuflad, a może torba?</div>
+            <div slot="rozwiazanie">ściana</div>
+        </task-card>
+        <task-card name="Zadanie 7" number ="7" avatar="icons/escape2.jpg">
+            <div slot="number"></div>
+            <div slot="title">ucieczka</div>
+            <div slot="code"></div>
+            <div slot="content">Ucieczka z łapanki: jeden z uciekinierów wykradł broń strażnikowi i zostawił ją w skrytce, udajcie się do bramy położonej
+                 najdalej od głównej drogi należy wyeliminować strażników blokujących wyjście - strzelanie do puszek, każdy uciekinier musi strącić 1 puszkę,
+                  po wykonaniu zadania – odłóżcie broń i puszki na miejsce, hasło: ile strzałów potrzebowaliście na strącenie wszystkich puszek.</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 8" number ="8" avatar="icons/bush.png">
+            <div slot="number"></div>
+            <div slot="title">maskowanie</div>
+            <div slot="code"></div>
+            <div slot="content">Po ucieczce musicie ukryć się przed pościgiem, udajcie się we wskazane miejsce przy drodze tak aby dobrze ją widzieć. Zamaskujcie
+                 twarze, załóżcie nakrycia głowy. Za wami wyruszy pościg. Z naszych informacji wynika, że w kolumnie pościgowej będzie 10 samochodów. Nie wolno 
+                 wam ruszyć zanim przejedzie ostatni pojazd!. Przejście przez ulicę tylko przy braku aut na horyzoncie i biegiem. Zwróćcie uwagę na szczegóły
+                  ostatniego samochodu jaki zobaczycie przed wyjściem w drogę. </div>
+            <div slot="podpowiedz1">Hasło: tablica rejestracyjna ostatniego samochodu, który zobaczyliście</div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 9" number ="9" avatar="icons/location2.jpg">
+            <div slot="number"></div>
+            <div slot="title">Łącznik</div>
+            <div slot="code"></div>
+            <div slot="content">Patrol musi się skontaktować z łącznikiem partyzantów. Udajcie się na określoną lokalizację spotkania, na miejscu łącznik nieobecny
+                 ale zostawia wiadomość: musicie określić swoje położenie na mapie za pomocą współrzędnych geograficznych żeby dowództwo miało świadomość sytuacyjną
+                  jakimi silami dysponuje, po prawidłowym podaniu lokalizacji uzyskują szyfry jakimi posługuje się partyzantka (gaderypoluki, politykarenu, kaceminutowy,
+                   koniecmatury) czy wiesz gdzie jesteś?</div>
+            <div slot="podpowiedz1">odnajdź nazwę miejscowości z której uciekliście</div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie">Waldfriedeck</div>
+        </task-card>
+        <task-card name="Zadanie 10" number ="10" avatar="icons/lornetka.jpg">
+            <div slot="number"></div>
+            <div slot="title"></div>
+            <div slot="code"></div>
+            <div slot="content">W rejon waszego działania wkroczyły oddziały wroga, musicie oszacować ich ilość. Każda osoba ma wykryć przez lornetkę i oznaczyć
+                 na zdjęciu jedną makietę. Po odkryciu wypełnienie testu co kto widział z trzech podobnych konturów. Wykrycia nie mogą się dublowac.</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2">samolot i śmigłowiec na drzewie, BWP i czołg w zaroślach, drużyna piechoty na drodze.</div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 11" number ="11" avatar="icons/grenade.jpeg">
+            <div slot="number"></div>
+            <div slot="title">Amunicja</div>
+            <div slot="code"></div>
+            <div slot="content">Pobierz amunicję (po 3 sztuki na głowę) z tajnego składu w rejonie...</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 12" number ="12" avatar="icons/outpost.jpeg">
+            <div slot="number"></div>
+            <div slot="title">Posterunek</div>
+            <div slot="code"></div>
+            <div slot="content">Jesteście gotowi do waszej pierwszej akcji odwetowej. W okolicy znajduje się posterunek okupanta. Wrzućcie granaty przez otwarte
+                 okna. Podejdźcie od strony wschodniej. Jest tam wał, który uchroni was przed odłamkami. Unikajcie dróg, są patrolowane. Musicie iść na azymut. 
+                 Po akcji oceńce skuteczność ataku (ile granatów trafiło do środka) i obejrzyjcie obiekt. Daty są ważne. Nie wchodźcie do środka. Wnętrze jest zaminowane!</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2">odczytajcie datę nad wejściem</div>
+            <div slot="rozwiazanie">data</div>
+        </task-card>
+        <task-card name="Zadanie 13" number ="13" avatar="icons/plane.jpg">
+            <div slot="number"></div>
+            <div slot="title">Zrzut</div>
+            <div slot="code"></div>
+            <div slot="content">ułożenie znaku widocznego z powietrza dla zrzutu skoczków spadochronowych, samolot przed zrzutem leci na wysokości 300m, prędkość 150km/h,
+                 trójkąt widoczności 1m na 100m. Numer prawidłowego lądowiska odblokowuje lokalizację</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2">wzór na wysokość znaku</div>
+            <div slot="rozwiazanie">3</div>
+        </task-card>
+        <task-card name="Zadanie 14" number ="14" avatar="icons/jets.png">
+            <div slot="number"></div>
+            <div slot="title">obrona przeciwlotnicza</div>
+            <div slot="code"></div>
+            <div slot="content">dotarła informacja, że na miejsce zrzutu ruszyły samoloty wroga, zlokalizuj 2 z nich, które znajdują się najbliżej lokalizacji zrzutu,
+                 odczytaj rodzaj samolotu, wysokość na której się porusza, prędkość, track, numer lotu, pozycję (long, lat), pamiętaj że w powietrzu wciąż znajdują się
+                  nasze walczące statki powietrzne, nie podaj ich pozycji bo zostaną zniszczone! Prawidłowe wypełnieni formularza</div>
+            <div slot="podpowiedz1">sprawdź stronę flightradar</div>
+            <div slot="podpowiedz2">ustaw filtr na lotnisko SVO</div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 15" number ="15" avatar="icons/dzdzo.jpg">
+            <div slot="number"></div>
+            <div slot="title">prowiant</div>
+            <div slot="code"></div>
+            <div slot="content">w oczekiwaniu na przylot samolotu z pierwszym desantem na pewno odczuliście już głód. Trzeba wybrać 3 osoby, które są najbardziej
+                 głodne/najbardziej lubią jeść. Do zjedzenia z zamkniętymi oczami i zatkanym nosem – dżdżownica/żelek, mrówki/mak, woda z kałuży/sok z cytryny.
+                  Za wyplucie ujemne punkty. Hasło: co było mrówką?</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 16" number ="16" avatar="icons/skoczek.png">
+            <div slot="number"></div>
+            <div slot="title"></div>
+            <div slot="code"></div>
+            <div slot="content">w czasie gdy wy urządzaliście sobie obiadki nadleciał wyczekiwany samolot z żołnierzami mającymi przygotować teren pod lądowanie sił głównych.
+                 Okazało się że w rejonie, o którym meldowaliście znajdują się baterie przeciwlotnicze wroga!. Przez Waszą niekompetencję samolot z Naszymi dzielnymi chłopcami
+                  został zestrzelony! Miejscowi meldują, że poza spadającym wrakiem widzieli też jeden spadochron, który miał lądować w lesie w rejonie_______. Znajdzcie go jak
+                   najszybciej i udzielcie pomocy. Przejmijcie wszystkie meldunki, mapy i rozkazy jakie ma przy sobie. Ruszać się!                             Po dotarciu na miejsce
+                    okzauje się, że skoczek nie przeżył, nie ma czasu na chowanie jego zwłok gdyż nasze źródła meldują, że zbliża się do Was kompania wroga szukająca skoczka, ujawniło
+                     by to Waszą obecność w rejonie. Przejmijcie meldunki i rozkazy i ruszajcie jak najszybciej na najbliższe wzgórze o wysokości ponad 140m npm żeby nadać komunikat
+                      o wstrzymaniu desantu sił głównych. Od Was zależy życie lecących żołnierzy!                                             W rozkazach informacja, że w razie wykrycia sił wroga uniemożliwiających wykonanie akcji desantowania należy nadać komunikat: Pilne!, odwołać desant sił głównych. Lądowisko pod ostrzałem obrony przeciwlotniczej wroga. Zaszyfrowany podwójnie Koniecmatury i polityka renu + mors</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 17" number ="17" avatar="icons/tower-icon-12.png">
+            <div slot="number"></div>
+            <div slot="title">komunikat</div>
+            <div slot="code"></div>
+            <div slot="content">zaszyfrowanie i nadanie komunikatu o treści: Pilne!, odwołać desant sił głównych. Lądowisko pod ostrzałem obrony przeciwlotniczej wroga.
+                 Po nadaniu sygnału natychmiast udajcie się w kierunku ______ aby zmylić jednostki poszukujące nadajnika.</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 18" number ="18" avatar="icons/landmine.jpg">
+            <div slot="number"></div>
+            <div slot="title">pole minowe</div>
+            <div slot="code"></div>
+            <div slot="content">wycofując się ze wzgórza w pośpiechu nie zauważyliście, że weszliście na teren pola minowego. Nie dacie rady rozbroić sobie ścieżki zanim
+                 odnajdzie Was pościg. Musicie zaufać oznaczeniom zostawionym przez lokalnych drwali udających się na wycinkę i po ich wskazówkach opuścić niebezpieczne miejsce.
+                  Spieszcie się, pościg jest tuż za Wami! - INO z busolą i strzałkami. Kolejna lokalizacja po wpisaniu hasła z ostatniej kartki: MINA</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 19" number ="19" avatar="icons/bomb.png">
+            <div slot="number"></div>
+            <div slot="title">rozminowanie</div>
+            <div slot="code"></div>
+            <div slot="content">udało się pościg odpuści widząc pole minowe na swojej drodze. Teraz musicie naprawić swój błąd i zniszczyć siły przeciwlotnicze blokujące lądowanie
+                 w Naszym rejonie. Trzeba zacząć od pozyskania materiałów wybuchowych. Mamy informacje od mieszkańców, że wróg podłożył ładunki ______ ale ze względu na opóźnienie
+                  dostaw, nie podłączyli zapalników. Udajcie się w ten rejon i odzyskajcie 5 lasek materiału wybuchowego. Pamiętajcie, że możecie bez przeszkód pobrać materiał i 
+                  schować go do plecaka ale pomimo braku zapalnika jeśli upuścicie materiał na ziemię – wybuchnie.</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 20" number ="20" avatar="icons/snajper.png">
+            <div slot="number"></div>
+            <div slot="title">snajper</div>
+            <div slot="code"></div>
+            <div slot="content">łącznik odciągnie uwagę pościgu ale trafiliście w rejon gdzie działa snajper. Wyznaczcie 1 osobę która będzie tyczką i pokierujcie ją w miejsce
+                 gdzie Waszym zdaniem znajduje się strzelec wyborowy. Tyczka idzie plecami do Was i wykonuje tylko polecenia ile kroków w którą stronę. Nie może sygnalizować co
+                  widzi ani sugerować kierunku. Po dojściu w miejsce gdzie waszym zdaniem znajduje się snajper idziecie na miejsce i liczycie ile kroków od waszej pozycji
+                   rzeczywiście się znajdował (lokalizacja w oddzielnej kopercie)</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 21" number ="21" avatar="icons/krzyż.jpeg">
+            <div slot="number"></div>
+            <div slot="title">wypadek</div>
+            <div slot="code"></div>
+            <div slot="content">Skutecznie pozyskaliście materiał wybuchowy. Przed przeczytaniem reszty wiadomości wybierzcie dwóch ochotników. Ochotnik numer 1 (głośniejszy) staje z rękami i nogami rozłożonymi szeroko. Ochotnicy naklejają sobie  wzajemnie w losowym miejscu czerwoną taśmę. 1 naklejka ma znajdować się od pasa w górę, druga od pasa w dół. Gotowe? Możesz przejść do dalszej części zadania.                                Niestety nie wszyscy członkowie zespołu byli wystarczająco uważni przy transporcie ładunków. Jeden z nich podrzucał nim a gdy ten upadł – został raniony przez odłamki w miejscach, które wskazaliście. Od momentu w którym zaczniecie ranny ma jęczeć, płakać, krzyczeć z bólu. Każda rana to ma sywny krwotok bez utraty przytomności, a dodatkowo: rana brzucha – wytrzewienie, rana klatki piersiowej - odma, rana głowy i szyji-hiperwentylacja, udo – amputacja pod kolanem, piszczel i stopa – złamanie otwarte kości piszczelowej, ręka – złamanie kończyny z ciałem obcym w środku. Na udzielenie pomocy macie 10minut po tym czasie pacjent wykrwawi się na śmierć. Po wykonaniu zadania  wykonać zdjęcie pacjenta i przesłać. Przystąpić do udzielania pomocy drugiemu pacjentowi. Kolejność udzielania pomocy według kategorii zagrożenia życia. Hasło
+            </div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 22" number ="22" avatar="icons/signpost.png">
+            <div slot="number"></div>
+            <div slot="title"></div>
+            <div slot="code">Część oddziału udało się uratować. Pozostałych zostawiliście na miejscu. Ponieważ wróg na pewno słyszał wybuch musicie ruszać dalej zanim Was odkryją. Przed Wami długi marsz aby zgubić pościg. Określcie odległość do celu (20km) i ruszajcie!            Po przejściu kilometra informacja – jeśli chcecie się poddać i zaryzykować idźcie skrótem, po drugim kilometrze -  zauważacie, że część Waszego patrolu opada  z sił i nie może dalej iść, w beznadziejnym przypadku odeślijcie ich do punktu przy najbliższej drodze ale pamiętajcie, że czeka go tam pojmanie i niewola, nie wróci już do Waszego oddziału. Pokażcie siłę grupy i pomóżcie najsłabszym by nie zrezygnowali.                  Kolejny punkt. Dobrze! Pościg został zgubiony, a Wasz oddział nie musi już dalej uciekać. Możecie wrócić do wykonywania zadań. Punkty za prawidłowe określenie odległości i podjęcie próby</div>
+            <div slot="content"></div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 23" number ="23" avatar="icons/explosion.jpg">
+            <div slot="number"></div>
+            <div slot="title">wysadzenie</div>
+            <div slot="code"></div>
+            <div slot="content">w końcu nadszedł czas gdy możemy zakończyć naszą misję. W rejonie _____ zlokalizowano zestaw przeciwlotniczy, pozostawiony bez załogi. Udajcie się jak najszybciej w ten rejon i podłóżcie ładunki wybuchowe we wskazanych miejscach. Po podłożeniu ładunków zróbcie zdjęcia i uciekajcie z rejonu rażenia, wróg może wrócić w każdej chwili!</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 24" number ="24" avatar="icons/blind2.png">
+            <div slot="number"></div>
+            <div slot="title">czarno to widzę</div>
+            <div slot="code"></div>
+            <div slot="content">Wybierzcie ochotnika. Załoga wróciła do zestawu szybciej niż się spodziewaliście i wywiązała się walka w wyniku, której wysadziliście pojazd gdy się do niego zbliżyli. Załoga zginęła ale niestety byliście zbyt blisko i błysk wybuchu Was oślepił i otępił. Ochotnik jest ranny w nogi i nie może iść dalej ale widzi. Załóżcie opaski na oczy, zróbcie 10 obrotów wokół własnej osi i przejdźcie tor tytko według wskazówek głosowych jedynego sprawnego członka zespołu (nie może iść z Wami). Po przejściu toru odzyskujecie wzrok i wracacie żeby przenieść kontuzjowanego członka zespołu</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 25" number ="25" avatar="icons/cypher.jpg">
+            <div slot="number"></div>
+            <div slot="title">meldunek</div>
+            <div slot="code"></div>
+            <div slot="content">wysadziliście przeszkodę do przeprowadzenia desantu. Możecie udać się na wzgórze _____ i nadać komunikat: Uwaga! Rejon desantowania gotowy do zrzutu. Pamiętajcie o podwójnym kodowaniu, siły lądowe wroga cały czas prowadzą nasłuch i poszukiwanie nadajników. Nadawanie musi przeprowadzić inny operator gdyż poprzedni stracił palce. Po nadaniu otrzymujecie informację w jakim rejonie zostaniecie podjęci przez śmigłowiec ewakuacji. </div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 26" number ="26" avatar="icons/heli.jpg">
+            <div slot="number"></div>
+            <div slot="title">ewakuacja</div>
+            <div slot="code"></div>
+            <div slot="content">Ze względu na możliwość wykrycia śmigłowiec będzie mógł wylądować tylko na 2 minuty. Po tym czasie odleci i nie wróci. Jeżeli się do niego nie dostaniecie zostaniecie złapani przez wroga. Ruszyć do śmigłowca możecie dopiero kiedy da sygnał. Do tego czasu musicie pozostać w ukryciu. W samochodzie oddajecie dokumenty do przygotowania odznaczeń za dzielność po czym przy muzyce rosyjskiej okazuje się, że jeden z członków oddziału był zdrajcą. Śmigłowiec wiezie Was do obozu. Na miejscu związane ręce i worki jutowe na głowę i prowadzenie pojedynczo na przesłuchanie, zakaz rozmów.</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 27" number ="27" avatar="icons/stopnie.png">
+            <div slot="number"></div>
+            <div slot="title">ranga wydarzenia</div>
+            <div slot="code"></div>
+            <div slot="content">komunikat o widzianych oddziałach z taką naszywką na czele których stali ludzie z takim i takim stopniem - rozpoznać ze ściągawki co to za jednostka,stopnie dowódców - w jakiej sile – 106GDP – batalion i kompania</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 28" number ="28" avatar="icons/tongue.png">
+            <div slot="number"></div>
+            <div slot="title">test wolskości</div>
+            <div slot="code"></div>
+            <div slot="content">wymówienie: koszt poczt w Tczewie, zmiażdż dżdżownicę, Jola lojalna i nielojalna Jola, cecylia czyta cytaty z tacyta, ćma ma nać, nać ma ćma, i cóż, że ze swarzędza?</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 29" number ="29" avatar="icons/chain.png">
+            <div slot="number"></div>
+            <div slot="title">wszyscy nasi przyjaciele...</div>
+            <div slot="code"></div>
+            <div slot="content">zostaliście zdradzeni, obóz wita ponownie...</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 30" number ="30" avatar="icons/man-with-question.jpg">
+            <div slot="number"></div>
+            <div slot="title">skupienie</div>
+            <div slot="code"></div>
+            <div slot="content">wprowadzenie do pokoju z bujającą się żarówką i zakrytymi oknami (pomieszczenie kapitana,któremu wykradaliście mapy) Zadawane pytania: imię, nazwisko, data i miejsce urodzenia, zawód,7*4,how old are you, 8*6, wo wohnst du, pytanie o zawód, 6x9, skąd znasz język wrogich aliantów                                      Po wyjściu odpowiedz na pytania: co w rękach trzymał przesłuchujący,  jaki obraz wisiał na ścianie (tablica ze stopniami), jaki stopień miał przesłuchujący, ile osób było w pomieszczeniu, jak nazywał się przesłuchujący</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+        <task-card name="Zadanie 31" number ="31" avatar="icons/spy.png">
+            <div slot="number"></div>
+            <div slot="title">wywiad</div>
+            <div slot="code"></div>
+            <div slot="content">zbieranie informacji o wrogu - zbieranie śmnieci</div>
+            <div slot="podpowiedz1"></div>
+            <div slot="podpowiedz2"></div>
+            <div slot="rozwiazanie"></div>
+        </task-card>
+    <hr>
+    <h6>Strefa zakończenia gry</h6>
+    <h6 id="sumUpInfo">Uwaga! jeśli zakończysz grę, nie będzie możliwe jej kontynuowanie.</h6>
+    <button class="btnEnd" id="btnEndGame">Zakończ grę</button>
+    <button class="btnEnd" id="btnSumUpEnd">Zakończ i podsumuj</button>
+    <h6 id="mainCounter">Counter podsumowujący</h6>
+<footer>Gra terenowa "Wolska w ogniu". All rights reserved &#174</footer>
+<script src="objects.js"></script>
+<script src="userCard.js"></script>
+</body>
+</html>
