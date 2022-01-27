@@ -7,6 +7,9 @@ const passport = require('passport');
 
 const app = express();
 
+// Serve Static Assets
+app.use(express.static('public'));
+
 //Passport config
 require('./config/passport')(passport);
 
