@@ -1,19 +1,20 @@
     .task-card {
 		font-family: 'Arial', sans-serif;
-		background: #f4f4f4;
-		width: 500px;
+		background: lightgray;
+        color:darkslategrey;
+		width: auto;
 		display: grid;
         grid-template-columns: 1fr 2fr;
 		grid-gap: 10px;
 		margin-bottom: 15px;
-		border-bottom: darkgreen 5px solid;
+		border-bottom: firebrick 5px solid;
 	}
     .info {
-        display: none;
+        display: inline-block;
     }
 
     .hint {
-        display: none;
+        display: inline;
     }
 
     #mapPicture {
@@ -21,7 +22,7 @@
     }
 
     #solving {
-        display: none;
+        display: inline;
     }
 
 	.task-card img {
@@ -30,7 +31,7 @@
     button {
         display: inline-block;
 		cursor: pointer;
-		background: darkgreen;
+		background: firebrick;
 		color: #fff;
 		border: 0;
 		border-radius: 5px;
@@ -39,15 +40,21 @@
 
     button:hover {
         color: white;
-        background: green;
-        border: 0px solid darkgreen;
+        background: crimson;
+        border-radius: 25px 0 25px 0;
+        border: 0px solid firebrick;
+        box-shadow: 5px 5px darkred;
+        opacity: 0.8;
+        transition: all 0.05s ease 0.1s;
     }
 
     button:disabled {
         display: none;
-        background: darkgrey;
+        background: lightgray;
     }
 
     img {
-        height: 20vh;
+        height: 25vh;
+        max-height: 25vh;
+        max-width: 30vh;
     }
