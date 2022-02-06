@@ -19,8 +19,9 @@ Task.find({}, (err, tasks)=>{
   if (err){
     console.log("ERROR!");
   } else {
+    //res.send({user: req.user})
     res.render('dashboard', {
-      user: req.user, info: "informacja", tasks: tasks
+      user: req.user, info: "informacja", tasks: tasks, team: req.teams
     })
   }
 }))
