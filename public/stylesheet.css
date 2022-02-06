@@ -1,3 +1,12 @@
+    a.item {
+        color: white;
+        background: darkred;
+        text-decoration: none;
+    }
+    a.item:hover {
+        color: darkred;
+        background: white;
+    }
     .task-card {
 		font-family: 'Arial', sans-serif;
 		background: lightgray;
@@ -8,6 +17,7 @@
 		grid-gap: 10px;
 		margin-bottom: 15px;
 		border-bottom: firebrick 5px solid;
+        border-radius: 20px 20px 40px 40px;
 	}
     .info {
         display: inline-block;
@@ -26,7 +36,7 @@
     }
 
 	.task-card img {
-		width: 100%;
+		width: 25%;
 	}
     button {
         display: inline-block;
@@ -58,3 +68,50 @@
         max-height: 25vh;
         max-width: 30vh;
     }
+
+    #rankImg {
+        max-width: 15vh;
+        border-radius: 20px 20px 0 0;
+    }
+
+    hr.newHr {
+        border: 1px solid darkred;
+    }
+
+    #landing {
+        background-size: cover;
+        background-image: url("./wolska.jpg");
+        max-height: 100vh
+    }
+
+.filled {
+    background-image: url(./ranks/puzzle/ps.jpg);
+    position: relative;
+    height: 193px;
+    width: 281px;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
+}
+
+.empty {
+    display: flex;
+    height: 203px;
+    width: 291px;
+    margin: 10px;
+    border: 3px darkgrey;
+    background-color: lightgrey;
+}
+
+.hold {
+    border: solid #ccc 4px;
+}
+
+.hovered {
+    background: #f4f4f4;
+    border-style: dashed;
+  }
+
+#ps {
+    background-color: red;
+}
