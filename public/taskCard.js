@@ -33,18 +33,20 @@ template.innerHTML = `
         display: none;
     }
 
-    #mapPicture {
-        display: none;
-    }
-
     #solving {
         display: none;
     }
 
-	.task-card img {
+	.taskImg {
 		max-width: 100%;
         border-radius: 40px 0 0 40px;
 	}
+
+    #mapPicture {
+        display: none;
+        max-height: 60vh;
+        max-width: 90%;
+    }
     
     button {
         display: inline-block;
@@ -76,25 +78,25 @@ template.innerHTML = `
     </style>
     
     <div class="task-card">
-        <img />
+        <img name="avatar" class="taskImg"/>
         <div> 
-            <h3></h3>
+            <h3><slot name="number"/>numer</h3>
             <div class="info">
-                <p><slot name="title" />tytuł</p>
-                <p><slot name="code" />kod</p>
+                <p><slot name="title"/>tytuł</p>
                 <p id="mapLocation">lokalizacja</p>
                     <button id="showMap">pokaż na mapie</button>
-                    <img id="mapPicture" src="mapy/plan gry-komplet.png"/>
+                    <img name="maps" id="mapPicture"/>
                 <p><slot name="content" />treść</p>
+                <p><slot name="link" />linki</p>
                     <button id="pdp1">Podpowiedź 1</button>
                 <p><slot name="podpowiedz1" class="hint" id="hint1" />podpowiedź numer 1</p>
                     <button id="pdp2">Podpowiedź 2</button>
                 <p><slot name="podpowiedz2" class="hint" id="hint2" />podpowiedź numer 2</p>
                     <button id="fix">Rozwiązanie</button>
                 <p><slot name="rozwiazanie" id="solving" />rozwiązanie</p>
-                    <p><input type="text" id="inputCommit" placeholder="Tu wprowadź hasło">
+                    <input type="text" id="inputCommit" placeholder="Tu wprowadź hasło">
                     <button id="btnCommit" class="commit">zatwierdź</button>
-                    <button id="btnSkip">pomiń</button></p>
+                    <button id="btnSkip">pomiń</button>
                     <button id="btnApproved" style="display:none">zaliczone</button></p>
                 <p id="showCommit">komunikat</p>
                 <h6 id="counter">counter</h6>
@@ -120,6 +122,7 @@ class TaskCard extends HTMLElement {
         //Import name and avatar attributes to task card
         this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
         this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');
+        this.shadowRoot.querySelector('#mapPicture').src = this.getAttribute('maps');
     }
 
     //Show Task info in a card
@@ -148,10 +151,12 @@ class TaskCard extends HTMLElement {
             //toggle map
             const info = this.shadowRoot.querySelector('#mapPicture');
             const toggleBtn = this.shadowRoot.querySelector('#showMap');
+            const locationText = this.shadowRoot.querySelector('#mapLocation');
 
             if(!this.showInfo) {
                 info.style.display = 'block';
                 toggleBtn.style.display = 'none';
+                locationText.style.display = 'none';
                 //toggleBtn.innerText = 'Ukryj lokalizację';
               } else {
                 /*Alternative case with returning button
@@ -229,7 +234,7 @@ class TaskCard extends HTMLElement {
             const podpowiedz1 = this.shadowRoot.querySelector('#pdp1');
             const podpowiedz2 = this.shadowRoot.querySelector('#pdp2');
             const rozwiazanieBtn = this.shadowRoot.querySelector('#fix');
-            const rozwiazanie = this.children[6].innerText;
+            const rozwiazanie = this.children[5].innerText;
             const commit = this.shadowRoot.querySelector('#btnCommit');
             const skip = this.shadowRoot.querySelector('#btnSkip');
             const inputValue = this.shadowRoot.querySelector('#inputCommit');
@@ -240,8 +245,8 @@ class TaskCard extends HTMLElement {
             const mainCounterField = document.querySelector('#mainCounter');
 
             //catch input
-            let odpowiedz = inputValue.value;
-             let taskNumber2 = parseInt(this.attributes.number.value)
+            let odpowiedz = inputValue.value.toLowerCase().replace(/ /g,'');
+            let taskNumber2 = parseInt(this.attributes.name.value)
 
             //validating
                 if (odpowiedz == rozwiazanie){
