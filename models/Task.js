@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({
     taskNumber:{
-        type: String,
+        type: Number,
         required: true,
         unique: true
     },
@@ -66,7 +66,11 @@ const TaskSchema = new mongoose.Schema({
     date:{
         type: Date,
         default: Date.now
+    },
+    link:{
+        type: String
     }
+
 });
 
 //TaskSchema.plugin(passportLocalMongoose)
