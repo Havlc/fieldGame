@@ -37,7 +37,8 @@ const TeamSchema = new mongoose.Schema({
     totalPoints: {
         type: Number,
         default: 0
-    }
+    },
+    members: [Array]
 });
 
 TeamSchema.plugin(passportLocalMongoose)
