@@ -69,6 +69,9 @@ const TaskSchema = new mongoose.Schema({
     },
     link:{
         type: String
+    },
+    nextTask:{
+        type: String
     }
 
 });
