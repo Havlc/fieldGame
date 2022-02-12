@@ -7,7 +7,6 @@ let newTaskImg = document.querySelector('avatar').innerText
 console.log(newTaskImg)
 }
 //changeTaskImg()
-
 changeTeamColor()
 //make a template
 const template = document.createElement('template');
@@ -99,7 +98,9 @@ template.innerHTML = `
                     <button id="btnSkip">pomiń</button>
                     <button id="btnApproved" style="display:none">zaliczone</button></p>
                 <p id="showCommit">komunikat</p>
-                <h6 id="counter">counter</h6>
+                <p><slot name="counter"/>licznik</p>
+                <p><slot name="visibility"/>status zadania</p>
+                <h6 id="counter">Twój wynik w localStorage:</h6>
             </div>
             <button id="toggle-info">Pokaż zadanie</button>
         </div>
@@ -247,7 +248,22 @@ class TaskCard extends HTMLElement {
             //catch input
             let odpowiedz = inputValue.value.toLowerCase().replace(/ /g,'');
             let taskNumber2 = parseInt(this.attributes.name.value)
-
+            //console.log(localStorage.getItem(`task${taskNumber2}`))
+            if(localStorage.getItem(`task${taskNumber2}`)>0){
+                counter = parseInt(localStorage.getItem(`task${taskNumber2}`))
+                counterField.innerHTML = `Twój wynik za zadanie = ${counter} punktów`;
+                mainCounter += counter;
+                counter = 0
+                mainCounterField.innerHTML = `Twój wynik - ${mainCounter} punktów`;
+                this.rankChange();
+                //disable all task buttons
+                commit.style.display = 'none';
+                //btnShowMap.disabled = true;
+                podpowiedz1.style.display = 'none';
+                podpowiedz2.style.display = 'none';
+                rozwiazanieBtn.style.display = 'none';
+                skip.style.display = 'none';
+            } else {
             //validating
                 if (odpowiedz == rozwiazanie){
                     //add points for entering a correct solving
@@ -263,7 +279,7 @@ class TaskCard extends HTMLElement {
                         if (counter>0){
                             showCommit.innerHTML = `${odpowiedz} to odpowiedź prawidłowa!`;
                             counterField.innerHTML = `Twój wynik za zadanie = ${counter} punktów`;
-
+                            localStorage.setItem(`task${taskNumber2}`,`${counter}`)
                             //counters update and reset
                             mainCounter += counter;
                             counter = 0
@@ -287,6 +303,7 @@ class TaskCard extends HTMLElement {
                     showCommit.innerHTML = `${odpowiedz} to odpowiedź nieprawidłowa, spróbuj ponownie`;
                     counter-=1
                 };
+            }    
         }
 
         skipTask(){
