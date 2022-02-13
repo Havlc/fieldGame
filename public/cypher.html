@@ -29,6 +29,7 @@ Your ciphered text:
 		let result = "";
 		for(let i=0;i<str.length;i++){
 			if(reg.test(str[i])){
+                console.log(reg.test(str[i]))
                 // wihtout polish signs
                 switch (str[i]){
                     case "Ą":
@@ -66,7 +67,7 @@ Your ciphered text:
                     case "G":      
                         result+="A";
                         break;
-                    case ("A" || "Ą"): 
+                    case ("A"): 
                         result+="G"; 
                         break;
                     case "D": 
