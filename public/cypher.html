@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Struktura</title>
+    <link rel="stylesheet" href="dragList.css" />
+    <link rel="shortcut icon" href="#">
+    <script
+      src="https://kit.fontawesome.com/3da1a747b2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+Your ciphered text:
+<h1>...</h1>
+
+<button type="submit" class="btn btn-primary btn-block" href="/cypher">Again?</button>
+
+<script>
+	let inputText = String(prompt("Place your text to cipher: "));
+
+	function cypher(str){
+		str = str.toUpperCase();
+		let alpha = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+		let reg = /[^A-Z]/gi
+		let result = "";
+		for(let i=0;i<str.length;i++){
+			if(reg.test(str[i])){
+                // wihtout polish signs
+                switch (str[i]){
+                    case "Ą":
+                        result+="A"
+                        break;
+                    case "Ć":
+                        result+="C"
+                        break;
+                    case "Ę":
+                        result+="E";
+                        break;
+                    case "Ł":
+                        result+="L"
+                        break;
+                    case "Ń":
+                        result+="N"
+                        break;
+                    case "Ó":
+                        result+="O"
+                        break;
+                    case "Ś":
+                        result+="S"
+                        break;   
+                    case "Ź":
+                        result+="Z"
+                        break; 
+                    case "Ż":
+                        result+="Z"
+                        break;     
+                    default:
+				    result+=str[i];
+                }    
+			} else {
+                switch (str[i]){
+                    case "G":      
+                        result+="A";
+                        break;
+                    case "A": 
+                        result+="G"; 
+                        break;
+                    case "D": 
+                        result+="E"; 
+                        break;
+                    case "E": 
+                        result+="D"; 
+                        break;
+                    case "R": 
+                        result+="Y"; 
+                        break;
+                    case "Y": 
+                        result+="R"; 
+                        break;
+                    case "P": 
+                        result+="O"; 
+                        break;
+                    case "O": 
+                        result+="P"; 
+                        break;
+                    case "L": 
+                        result+="U"; 
+                        break;
+                    case "U": 
+                        result+="L"; 
+                        break;
+                    case "K": 
+                        result+="I"; 
+                        break;
+                    case "I": 
+                        result+="K"; 
+                        break;   
+                    default:
+                        result+=str[i];
+                }
+			}
+		}
+		return result;
+	}
+
+let cypheredText = cypher(inputText);
+document.querySelector("h1").textContent = cypheredText;
+</script>
+</body>
+</html>
