@@ -19,6 +19,9 @@ let dragStartIndex;
 
 createList();
 
+let countClicks = 0;
+let counterField = document.querySelector('#counter');
+
 // Insert list items into DOM
 function createList() {
   [...rankHierarchy]
@@ -87,8 +90,14 @@ function swapItems(fromIndex, toIndex) {
 
 // Check the order of list items
 function checkOrder() {
+  countClicks +=1;
+  counterField.textContent=`Liczba kliknięć: ${countClicks}`;
+  if (countClicks == 10){
+    alert('za dużo prób żołnierzu! zacznij od nowa')
+    window.location.reload()
+  }
   listItems.forEach((listItem, index) => {
-    const rankCorp = listItem.querySelector('.draggable').innerText.trim();
+    const rankCorp = listItem.querySelector('.draggable').textContent.trim();
     console.log(rankCorp)
 
     if (rankCorp !== rankHierarchy[index]) {
@@ -100,7 +109,7 @@ function checkOrder() {
   });
   let wrongAnswers = document.querySelectorAll('.wrong')
   if(Object.entries(wrongAnswers)==0){
-      document.querySelector('#rankSolution').innerText='podporucznik'
+      document.querySelector('#rankSolution').textContent='Hasło brzmi: podporucznik'
       document.querySelectorAll('.fa').forEach(i => {
         i.style.display="none";
       })
@@ -132,7 +141,7 @@ function addEventListeners() {
     const beforeRankText = item.parentNode.parentNode.previousSibling.children[2].innerHTML
     /*console.log(currentRankText)
     console.log(beforeRankText)
-    console.log(item.parentNode.innerText)
+    console.log(item.parentNode.textContent)
     console.log(item.parentNode.parentNode)*/
     console.log(item.parentNode.parentNode.previousSibling.children[2].children[1])
     item.parentNode.parentNode.previousSibling.children[2].innerHTML = currentRankText
@@ -166,7 +175,17 @@ console.log(draggables)
 console.log(dragListItems)
 console.log(arrowUp)*/
 }
+/*document.addEventListener('click', e => {
+  if(e.target.matches('.fa-arrow-down')){
+    e.addEventListener('click', () => {
 
+      const currentRankText = item.parentNode.innerHTML
+      const beforeRankText = item.parentNode.parentNode.nextSibling.children[2].innerHTML
+
+      item.parentNode.parentNode.nextSibling.children[2].innerHTML = currentRankText
+      item.parentNode.innerHTML = beforeRankText
+  })}
+})*/
 checkBtn.addEventListener('click', checkOrder);
 checkBtn.addEventListener('click', addEventListeners)
 /*
@@ -178,7 +197,7 @@ document.querySelectorAll('.fa-arrow-up').forEach(item =>{
     const beforeRankText = item.parentNode.parentNode.previousSibling.children[2].innerHTML
     console.log(currentRankText)
     console.log(beforeRankText)
-    console.log(item.parentNode.innerText)
+    console.log(item.parentNode.textContent)
     
     item.parentNode.parentNode.previousSibling.children[2].innerHTML = currentRankText
     item.parentNode.innerHTML = beforeRankText
