@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rozpoznanie</title>
     <style>
+        body {
+        background-color: #272b30;
+        color: #c3c7ca;
+        font-family: 'Lato', sans-serif;
+        }
+        button {
+            background: darkred;
+        }
         img {
             height: 30vh;
             width: 40vh;
@@ -23,7 +31,7 @@
         }
 
         .quizBoxHint:hover {
-            border: 1px solid violet;
+            /*border: 1px solid violet;*/
         }
 
         #btnHint2{
@@ -51,6 +59,7 @@
             <img src="./quizImg/green.jpg" class="quizBoxHint hintOne" id="greenHint"/>
             <img src="./quizImg/green2.jpg" class="quizBoxHint hintOne" id="green2Hint"/>
         <button class="quizBtn" id="btnHint1">Podpowiedź</button>
+        <hr>
         <div class="questionTab" id="questionTwo">Wozy Opancerzone</div>
         <img src="./quizImg/btr80.jpg" class="quizBox wrong" id="btr"/>
         <img src="./quizImg/bmp.jpg" class="quizBox correct" id="bmp"/>
@@ -60,6 +69,7 @@
             <img src="./quizImg/bmphint.jpg" class="quizBoxHint hintTwo" id="bmphint"/>
             <img src="./quizImg/m113hint.jpg" class="quizBoxHint hintTwo" id="m113hint"/>
         <button class="quizBtn" id="btnHint2">Podpowiedź</button>
+        <hr>
         <div class="questionTab" id="questionThree">Czołgi</div>
         <img src="./quizImg/t72.jpg" class="quizBox correct" id="t72"/>
         <img src="./quizImg/leo.jpg" class="quizBox wrong" id="leo"/>
@@ -69,6 +79,7 @@
             <img src="./quizImg/leohint.jpeg" class="quizBoxHint hintThree" id="leohint"/>
             <img src="./quizImg/t34hint.jpg" class="quizBoxHint hintThree" id="t34hint"/>
         <button class="quizBtn" id="btnHint3">Podpowiedź</button>
+        <hr>
         <div class="questionTab" id="questionFour">Śmigłowce</div>
         <img src="./quizImg/mi8.jpg" class="quizBox wrong" id="mi8"/>
         <img src="./quizImg/mi24.jpg" class="quizBox correct" id="mi24"/>
@@ -78,6 +89,7 @@
             <img src="./quizImg/mi24hint.jpeg" class="quizBoxHint hintFour" id="mi24hint"/>
             <img src="./quizImg/sokolhint.jpg" class="quizBoxHint hintFour" id="sokolhint"/>
         <button class="quizBtn" id="btnHint4">Podpowiedź</button>
+        <hr>
         <div class="questionTab" id="questionFive">Samoloty</div>
         <img src="./quizImg/mig29.jpg" class="quizBox correct" id="mig29"/>
         <img src="./quizImg/f16.jpg" class="quizBox wrong" id="f16"/>
@@ -86,9 +98,8 @@
             <img src="./quizImg/mig29hint.jpg" class="quizBoxHint hintFive" id="mighint"/>
             <img src="./quizImg/f16hint.jpg" class="quizBoxHint hintFive" id="f16hint"/>
             <img src="./quizImg/a10hint.jpeg" class="quizBoxHint hintFive" id="a10hint"/>
-        <br/>
         <button class="quizBtn" id="btnHint5">Podpowiedź</button>
-        <br/>
+        <hr/>
         <button type="submit" class="quizBtn" id="btnEnd">Zatwierdź kartę obserwacji</button>
         <div id="quizResult">Twój wynik za zadanie:</div>
     </div>
