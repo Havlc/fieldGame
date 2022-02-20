@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Struktura</title>
+    <title>Cypherator</title>
     <link rel="stylesheet" href="dragList.css" />
     <link rel="shortcut icon" href="#">
     <script
@@ -13,15 +13,28 @@
     ></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body>
-Your ciphered text:
-<h1>...</h1>
+  <body style="text-align: center">
+    <p style="margin-top:50px">You can cypher your text with GADERYPOLUKI code.</p>
+    <button id="btnHint" class="button">Hint</button>
+    <div class="hint" style="display:none">
+        <p>To get your answer you have to replace letters in such pairs:</p>
+        <p>G-A, D-E, R-Y, P-O, L-U, K-I</p>
+        <p> Remember to replace only letters that are listed in pairs. Rest of them copy as they appear. Treat polish letters as latin ones. 
+            Numbers and special signs stay as they are.</p>
+    </div>
+    <button id="btnExamples" class="button">Examples</button>    
+    <div class="examples" style="display:none">   
+        <p>Examples:</p>
+        <p>MADRYT - MGEYRT</p>
+        <p>LOKÓWKA - UPIPWIG</p>
+    </div>
 
-<button type="submit" class="btn btn-primary btn-block" href="/cypher">Again?</button>
+<p>Your ciphered text:</p>
+<h1 style="color: darkgreen">...</h1>
+
+<a type="submit" id="btnAgain" class="button" >Check</a>
 
 <script>
-	let inputText = String(prompt("Place your text to cipher: "));
-
 	function cypher(str){
 		str = str.toUpperCase();
 		let alpha = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
@@ -108,8 +121,31 @@ Your ciphered text:
 		return result;
 	}
 
-let cypheredText = cypher(inputText);
-document.querySelector("h1").textContent = cypheredText;
+let inputText = ''
+let cypheredText
+let cypherField = document.querySelector("h1")
+let hint = document.querySelector('.hint')
+let examples = document.querySelector('.examples')
+
+let btnAgain = document.querySelector('#btnAgain')
+let btnHint = document.querySelector('#btnHint')
+let btnExamples = document.querySelector('#btnExamples')
+
+btnAgain.addEventListener('click', (item)=>{
+    inputText = String(prompt("Place your text to cipher: "));
+    cypheredText = cypher(inputText);
+    cypherField.textContent = cypheredText;
+    btnAgain.textContent='Again?'
+})
+
+btnHint.addEventListener('click', ()=>{
+    hint.style.display = "block"
+})
+
+btnExamples.addEventListener('click', ()=>{
+    examples.style.display = "block"
+})
+
 </script>
 </body>
 </html>

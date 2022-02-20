@@ -106,3 +106,26 @@ img {
     height: 15vh;
     width: 22vh;
 }
+
+.button {
+  font: bold 20px Arial;
+  text-decoration: none;
+  background-color: darkred;
+  color: crimson;
+  padding: 4px 10px 4px 10px;
+  margin: 10px;
+  border-radius: 15px;
+  border-top: 1px solid crimson;
+  border-right: 1px solid crimson;
+  border-bottom: 1px solid crimson;
+  border-left: 1px solid crimson;
+}
+
+.button:hover {
+  background-color: crimson;
+  color: darkred;
+  border-top: 1px solid darkred;
+  border-right: 1px solid darkred;
+  border-bottom: 1px solid darkred;
+  border-left: 1px solid darkred;
+}
