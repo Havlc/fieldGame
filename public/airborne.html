@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Airborne</title>
+    <!--<link rel="stylesheet" href="stylesheet.css" />-->
+    <link rel="shortcut icon" href="#">
+    <style>
+    body {
+            background-color: #272b30;
+            color: #c3c7ca;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 20px;
+            font-family: 'Lato', sans-serif;
+    }
+    button {
+        background: #722F37;
+        color: #c3c7ca;
+        border-radius: 10px;
+        padding: 10px;
+        min-width: 200px;
+        min-height: 40px;
+    }
+    button:hover {
+        background: crimson;
+        color: darkred;
+        border-radius: 0 10px;
+    }
+    hr {
+        width: 100%;
+        color:#722F37;
+    }
+    .imgTrig {
+        background:white;
+        max-height: 50%;
+        max-width: 260px;
+    }
+    li {
+        margin: 5px;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>DESANT</h1>
+        <p>W rejon waszego działania zostały wysłane oddziały powietrzno-desantowe.</p>
+        <p>Aby umożliwić im wejście do walki musicie wskazać lądowisko.</p>
+        <img src="/public/icons/para.jpg" style="max-height: 200px;">
+    <div>
+        <h3>Zadanie:</h3>
+        <p>Samolot bezpośrednio przed rozpoczęciem zrzutu skoczków leci na wysokości 280m nad ziemią z prędkością 80km/h.</p>
+        <p>Samolot nie może lądować na okolicznych polach ani dokonać tam zrzutu ze względu na obecność wrogich oddziałów.</p>
+        <p>Lokalni leśnicy wskazali polanę na której się znajdujecie jako nadającą się do desantu forpoczty sił głównych</p>
+        <p>Pierwszy skoczek opuści samolot dokładnie nad znakiem na początku lądowiska i opada pod kątem 60<sup>o</sup> do powierzchni ziemi.</p>
+        <p>Ostatni skoczek wyskakuje 3 sekundy po nim. Sprawdźcie czy lądowisko jest wystarczająco długie dla bezpiecznego lądowania skoczków.</p>
+        <p>Jeżeli długość jest wystarczająca, z dostępnego materiału stwórzcie znak widoczny z powietrza dla zrzutu sekcji rozpoznawczej skoczków spadochronowych.</p>
+        <Jaka>Nawigator przekazujący sygnał do skoku jest w stanie zobaczyć przedmiot o wysokości 1m z wysokości 100m. Jaka jest minimalna wysokość znaku aby został zauważony przez nawigatora?</p>
+    </div>
+    <hr>
+    <div>
+        <button id="btnData">Dane</button>
+        <div id="dataField" style="display: none;">
+            <h3>Dane:</h3>
+            <ul>
+                <li>prędkość samolotu - V<sub>s</sub>=80km/h</li>
+                <li>wysokość lotu     - H=280m</li>
+                <li>czas między desantowaniem pierwszego i ostatniego skoczka t<sub>d</sub>=3s</li>
+                <li>kąt opadania w stosunku do powierzchni ziemi a=60<sup>o</sup></li>
+            </ul>
+        </div>
+    </div>      
+    <hr>
+    <div>
+        <button id="btnSearch">Szukane</button>
+        <div id="searchField" style="display: none;">   
+            <h3>Szukane:</h3>
+            <ul>
+                <li>długość polany    - L<sub>p</sub> [m]</li>
+                <li>odległość lądowania osatniego skoczka od znaku początku lądowiska - L<sub>s</sub> [m]</li>
+                <li>wysokość znaku    - h<sub>z</sub> [m]</li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <button id="btnSecSearch">Szukane pomocnicze i wzory</button>
+        <div id="secSearchField" style="display: none;">
+            <h3>Szukane pomocnicze i wzory</h3>
+            <ul>
+                <li>prędkość samolotu [m/s] = V<sub>s</sub>[km/h]*1000/3600</li>
+                <li>droga jaką pokona samlot między desantowaniem pierwszego i ostatniego skoczka [m] = l<sub>sam</sub>=V<sub>s</sub>*t<sub>d</sub></li>
+                <li>droga w poziomie jaką pokona ostatni skoczek od opuszczenia samolotu l<sub>sk</sub></li>
+                <li>odległość lądowania osatniego skoczka od znaku początku lądowiska - L<sub>s</sub> [m]=l<sub>sam</sub>+l<sub>sk</sub></li>
+                <li>Funkcje trygonometryczne:</li>
+                <img src="/public/icons/tryg.jpg" class="imgTrig"/>
+                <img src="/public/icons/trojkat.jpg" class="imgTrig"/>
+            </ul>
+        </div>    
+    </div>
+    <hr>
+    <div>
+        <button id="btnSchema">Schemat</button>
+        <div id="schemaField" style="display: none;">
+            <h3>Schemat:</h3>
+        </div>    
+    </div>
+    <hr>
+    <div>
+        <button id="btnSolution">Rozwiązanie</button>
+        <div id="solutionField" style="display: none;">
+            <h3>Rozwiązanie:</h3>
+            <p>
+                L<sub>p</sub> > L<sub>s</sub> = l<sub>sam</sub> + l<sub>sk</sub> = V<sub>s</sub>*t<sub>d</sub> + H/tg&#945;
+            </p>
+            <p>
+                Lądowisko jest wystarczająco długie.
+            </p>
+            <p>
+                hz = 1m/100m*300m = 3m
+            </p>
+            <p>
+                Znak musi mieć co najmniej 3m
+            </p>
+        </div>    
+    </div>
+    <hr>
+    <!--<form action="">-->
+        <p>Czy skoczek ostatni skoczek ma szansę wylądować bezpiecznie?</p>
+            <input type="radio" id="jumpYes" name="jumpForm" value="">
+            <label for="jumpYes">Tak</label>
+        <br>
+            <input type="radio" id="jumpNo" name="jumpForm" value="">
+            <label for="jumpNo">Nie</label>
+        <br>
+        <p>Jaka jest minimalna wysokość znaku w metrach (cyfrą) aby został zauważony przez nawigatora?</p>
+        <input type="text" id="inputCommit">
+        <button id="btnConfirm">Zatwierdź</button>
+        <div id="confirmationField"></div>
+    <!--</form>-->
+  </body>
+  <script>
+      const dataField = document.querySelector('#dataField');
+      const searchField = document.querySelector('#searchField');
+      const secSearchField = document.querySelector('#secSearchField');
+      const schemaField = document.querySelector('#schemaField');
+      const solutionField = document.querySelector('#solutionField');
+      const inputValue = document.querySelector('#inputCommit');
+      const confirmationField = document.querySelector('#confirmationField');
+
+      const btnData = document.querySelector('#btnData');
+      const btnSearch = document.querySelector('#btnSearch');
+      const btnSecSearch = document.querySelector('#btnSecSearch');
+      const btnSchema = document.querySelector('#btnSchema');
+      const btnSolution = document.querySelector('#btnSolution');
+      const btnConfirm = document.querySelector('#btnConfirm');
+
+      btnData.addEventListener('click', ()=>{
+          dataField.style.display = "block";
+          btnData.style.display = "none";
+      });
+      btnSearch.addEventListener('click', ()=>{
+          searchField.style.display = "block";
+          btnSearch.style.display = "none";
+      });
+      btnSecSearch.addEventListener('click', ()=>{
+          secSearchField.style.display = "block";
+          btnSecSearch.style.display = "none";
+      });
+      btnSchema.addEventListener('click', ()=>{
+          schemaField.style.display = "block";
+          btnSchema.style.display = "none";
+      });
+      btnSolution.addEventListener('click', ()=>{
+          solutionField.style.display = "block";
+          btnSolution.style.display = "none";
+      });
+      btnConfirm.addEventListener('click', ()=>{
+        console.log(inputValue)
+          let odpowiedz = inputValue.value.toLowerCase().replace(/ /g,'');
+          if (odpowiedz==3){
+              confirmationField.textContent = `${odpowiedz} to odpowiedź prawidłowa.`;
+              btnConfirm.style.display = "none";
+          } else {
+              confirmationField.textContent = `${odpowiedz} to odpowiedź nieprawidłowa.`;
+          }
+      });
+
+  </script>
