@@ -1,13 +1,50 @@
+//Counters
+let counter = 0
+let mainCounter = parseInt(document.querySelector('#mainCounterPoints').innerText);
+
 function changeTeamColor(){
-let newTeamColor = document.querySelector('#spanTeamColor').innerText
-document.querySelector('#spanTeamColor').style.backgroundColor=newTeamColor;
+    let newTeamColor = document.querySelector('#spanTeamColor').innerText
+    document.querySelector('#spanTeamColor').style.backgroundColor=newTeamColor;
 }
-function changeTaskImg(){
-let newTaskImg = document.querySelector('avatar').innerText
-console.log(newTaskImg)
+
+function rankChange(){
+
+    let currentRankName = document.querySelector('#rankName');
+    let currentRankImg = document.querySelector('#rankImg')
+
+    //players rank update
+    if (mainCounter<=29){
+        currentRankName.textContent = `szeregowy`;
+    } else if (mainCounter>29 && mainCounter<=49) {
+        currentRankName.textContent = `starszy szeregowy`;
+        currentRankImg.src = "ranks/StSzeregowy.png";
+    } else if (mainCounter>49 && mainCounter<=70) {
+        currentRankName.textContent = `kapralu`;
+        currentRankImg.src = "ranks/Kapral.png";
+    } else if (mainCounter>70 && mainCounter<=92) {
+        currentRankName.textContent = `starszy kapralu`;
+        currentRankImg.src = "ranks/StKapral.png";
+    } else if (mainCounter>92 && mainCounter<=125) {
+        currentRankName.textContent = `plutonowy`;
+        currentRankImg.src = "ranks/Plutonowy.png";
+    } else if (mainCounter>125 && mainCounter<=155) {
+        currentRankName.textContent = `sierżancie`;
+        currentRankImg.src = "ranks/Sierzant.png";
+    } else if (mainCounter>155 && mainCounter<=190) {
+        currentRankName.textContent = `starszy sierżancie`;
+        currentRankImg.src = "ranks/StSierzant.png";
+    } else if (mainCounter>190 && mainCounter<=230) {
+        currentRankName.textContent = `młodszy chorąży`;
+        currentRankImg.src = "ranks/MlChorazy.png";
+    } else {
+        currentRankName.textContent = `chorąży`;
+        currentRankImg.src = "ranks/Chorazy.png";
+    }  
 }
-//changeTaskImg()
+
+//change colour of my team
 changeTeamColor()
+
 //make a template
 const template = document.createElement('template');
 template.innerHTML = `
@@ -24,6 +61,7 @@ template.innerHTML = `
 		border-bottom: firebrick 5px solid;
         border-radius: 40px;
 	}
+    
     .info {
         display: none;
     }
@@ -96,13 +134,13 @@ template.innerHTML = `
                     <input type="text" id="inputCommit" placeholder="Tu wprowadź hasło">
                     <button id="btnCommit" class="commit">zatwierdź</button>
                     <button id="btnSkip">pomiń</button>
-                    <button id="btnApproved" style="display:none">zaliczone</button></p>
                 <p id="showCommit">komunikat</p>
-                <p><slot name="counter"/>licznik</p>
+                
                 <button id="btnShowMapNext">lokalizacja następnego zadania</button>
                 <img name="mapNext" class="mapImg" id="mapPictureNext"/>
-                <p><slot name="visibility"/>status zadania</p>
-                <h6 id="counter">Twój wynik w localStorage:</h6>
+                <p><slot id="taskVisibility" name="visibility"/>status zadania</p>
+                <p><slot name="counter" id="counterDB"/>licznik</p>
+                <p><slot name="counter" id="counter"/>licznik</p>
             </div>
             <button id="toggle-info">Pokaż zadanie</button>
         </div>
@@ -127,6 +165,7 @@ class TaskCard extends HTMLElement {
         this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');
         this.shadowRoot.querySelector('#mapPicture').src = this.getAttribute('maps');
         this.shadowRoot.querySelector('#mapPictureNext').src = this.getAttribute('mapNext');
+
     }
 
     //Show Task info in a card
@@ -138,19 +177,40 @@ class TaskCard extends HTMLElement {
             //toggle card surface
             const info = this.shadowRoot.querySelector('.info');
             const toggleBtn = this.shadowRoot.querySelector('#toggle-info');
-        
+            const podpowiedz1 = this.shadowRoot.querySelector('#pdp1');
+            const podpowiedz2 = this.shadowRoot.querySelector('#pdp2');
+            const rozwiazanieBtn = this.shadowRoot.querySelector('#fix');
+            const commit = this.shadowRoot.querySelector('#btnCommit');
+            const skip = this.shadowRoot.querySelector('#btnSkip');
+            const taskVisibility = this.shadowRoot.querySelector('#taskVisibility');
+            const inputField = this.shadowRoot.querySelector('#inputCommit');
+            const counterField = this.shadowRoot.querySelector('#counter');
+
             if(this.showInfo) {
                 info.style.display = 'none';
                 toggleBtn.innerText = 'Pokaż zadanie';
             } else {
-              info.style.display = 'block';
-              toggleBtn.innerText = 'Ukryj zadanie';
+                info.style.display = 'block';
+                toggleBtn.innerText = 'Ukryj zadanie';
+                taskVisibility.style.display = 'none';
+                counterField.style.display = 'none';
+            }
+            if(this.children[8].innerText=='hidden'){
+                
+                //disable all task buttons
+                commit.style.display = 'none';
+                podpowiedz1.style.display = 'none';
+                podpowiedz2.style.display = 'none';
+                rozwiazanieBtn.style.display = 'none';
+                skip.style.display = 'none';
+                inputField.style.display = 'none';
+                counterField.style.display = 'none';
             }
           }
         
         toggleMap() {
             //reduce points for opening a hint map
-            counter-=1
+            //counter-=1
             
             //toggle map
             const info = this.shadowRoot.querySelector('#mapPicture');
@@ -172,15 +232,14 @@ class TaskCard extends HTMLElement {
             //toggle map
             const info = this.shadowRoot.querySelector('#mapPictureNext');
             const toggleBtnNext = this.shadowRoot.querySelector('#btnShowMapNext');
-            console.log(info)
+
             if(!this.showInfo) {
                 info.style.display = 'block';
                 toggleBtnNext.style.display = 'none';
-            }   else {console.log('error')}
+            }   else {console.log('no map found')}
         }
 
         toggleHint() {
-            //this.showHint = !this.showInfo;
 
             //reduce points for opening a hint
             counter-=2
@@ -201,7 +260,6 @@ class TaskCard extends HTMLElement {
         }
 
         toggleHint2() {
-            //this.showHint2 = !this.showInfo;
 
             //reduce points for opening a hint
             counter-=2
@@ -222,7 +280,6 @@ class TaskCard extends HTMLElement {
         }
         
         toggleSolving() {
-            //this.showSolving = !this.showInfo;
             
             //reduce points for opening a solving
             counter-=5
@@ -248,26 +305,39 @@ class TaskCard extends HTMLElement {
             const podpowiedz1 = this.shadowRoot.querySelector('#pdp1');
             const podpowiedz2 = this.shadowRoot.querySelector('#pdp2');
             const rozwiazanieBtn = this.shadowRoot.querySelector('#fix');
-            const rozwiazanie = this.children[5].innerText;
+            const rozwiazanie = this.children[6].innerText;
+            //console.log(rozwiazanie)
             const commit = this.shadowRoot.querySelector('#btnCommit');
             const skip = this.shadowRoot.querySelector('#btnSkip');
             const inputValue = this.shadowRoot.querySelector('#inputCommit');
             const showCommit = this.shadowRoot.querySelector('#showCommit');
 
+            //catch data
+            const taskId = this.children[0].innerText;
+            //console.log(`task id ${taskId}`)
+            const team = document.querySelector('#spanTeamColor').innerText
+            // console.log(taskId)
+            // console.log(team)
+            // console.log(this)
+            // console.log('input value : ' + inputValue.value)
+
             //catch counters
             const counterField = this.shadowRoot.querySelector('#counter');
             const mainCounterField = document.querySelector('#mainCounter');
+            const counterFieldDB = this.shadowRoot.querySelector('#counterDB')
+            const mainCounterFieldPoints = document.querySelector('#mainCounterPoints');
 
             //catch input
             let odpowiedz = inputValue.value.toLowerCase().replace(/ /g,'');
             let taskNumber2 = parseInt(this.attributes.name.value)
             //console.log(localStorage.getItem(`task${taskNumber2}`))
-            if(localStorage.getItem(`task${taskNumber2}`)>0){
+            if(false && localStorage.getItem(`task${taskNumber2}`)>0){
                 counter = parseInt(localStorage.getItem(`task${taskNumber2}`))
-                counterField.textContent = `Twój wynik za zadanie = ${counter} punktów`;
+                // counterField.textContent = `Twój wynik za zadanie = ${counter} punktów`;
                 mainCounter += counter;
+                this.updatePointsInDb(taskId, counter, counterField, mainCounterField);
                 counter = 0
-                mainCounterField.textContent = `Twój wynik - ${mainCounter} punktów`;
+                // mainCounterField.textContent = `Twój wynik - ${mainCounter} punktów`;
                 this.rankChange();
                 //disable all task buttons
                 commit.style.display = 'none';
@@ -281,6 +351,8 @@ class TaskCard extends HTMLElement {
                 if (odpowiedz == rozwiazanie){
                     //add points for entering a correct solving
                     counter+=10;
+                    counterField.style.display = 'block';
+                    counterFieldDB.style.display = 'none';
                     //disable all task buttons
                     commit.style.display = 'none';
                     //btnShowMap.disabled = true;
@@ -291,24 +363,27 @@ class TaskCard extends HTMLElement {
 
                         if (counter>0){
                             showCommit.textContent = `${odpowiedz} to odpowiedź prawidłowa!`;
-                            counterField.textContent = `Twój wynik za zadanie = ${counter} punktów`;
+                            // counterField.textContent = `Twój wynik za zadanie = ${counter} punktów`;
                             localStorage.setItem(`task${taskNumber2}`,`${counter}`)
                             //counters update and reset
                             mainCounter += counter;
+                            
+                            mainCounterFieldPoints.style.display = 'none';
+                            this.updatePointsInDb(team, taskId, counter, counterField, mainCounterField);
                             counter = 0
-                            mainCounterField.textContent = `Twój wynik - ${mainCounter} punktów`;
+                            // mainCounterField.textContent = `Twój wynik - ${mainCounter} punktów`;
                             /*currentTaskNumber++;
                             document.getElementById("newTask").textContent = `Nowe zadanie do rozwiązania: ${pytanie1.content}`;
                             // funkcja odsłaniająca kolejne zadanie*/
-                            this.rankChange();
+                            rankChange();
                         } else {
 
                             showCommit.textContent = `${odpowiedz} to odpowiedź prawidłowa! ale wykorzystaliście zbyt wiele prób :(`;
-
+                            this.updatePointsInDb(team, taskId, 0, counterField,mainCounterField);
                             counter = 0
-                            counterField.textContent = `Twój wynik za zadanie = ${counter} punktów`;
+                            // counterField.textContent = `Twój wynik za zadanie = ${counter} punktów`;
                             //mainCounter += counter;
-                            mainCounterField.textContent = `Twój wynik - ${mainCounter} punktów`;
+                            // mainCounterField.textContent = `Twój wynik - ${mainCounter} punktów`;
                         }
                 }
                                 
@@ -327,56 +402,75 @@ class TaskCard extends HTMLElement {
             const commit = this.shadowRoot.querySelector('#btnCommit');
             const skip = this.shadowRoot.querySelector('#btnSkip');
             const showCommit = this.shadowRoot.querySelector('#showCommit');
+            const inputField = this.shadowRoot.querySelector('#inputCommit');
             const counterField = this.shadowRoot.querySelector('#counter');
             const mainCounterField = document.querySelector('#mainCounter');
+            const counterFieldDB = this.shadowRoot.querySelector('#counterDB')
+            const mainCounterFieldPoints = document.querySelector('#mainCounterPoints');
+            let taskNumber2 = parseInt(this.attributes.name.value)
             counter=0;
-            
+
+            const taskId = this.children[0].innerText;
+            //console.log(`task id ${taskId}`)
+            const team = document.querySelector('#spanTeamColor').innerText
+
                 showCommit.textContent = `Pominęliście to zadanie`;
-                counterField.textContent = `Twój wynik za zadanie = ${counter} punktów`;
                 
+                counterField.style.display = 'block';
+                counterFieldDB.style.display = 'none';
+
                     //disable all task buttons
                     commit.style.display = 'none';
-                    //btnShowMap.disabled = true;
                     podpowiedz1.style.display = 'none';
                     podpowiedz2.style.display = 'none';
                     rozwiazanieBtn.style.display = 'none';
                     skip.style.display = 'none';
+                    inputField.style.display = 'none';
                 
+                localStorage.setItem(`task${taskNumber2}`,`${counter}`)
                 //counters update
-                 mainCounterField.textContent = `Twój wynik - ${mainCounter} punktów`;
+                mainCounterFieldPoints.style.display = 'none';
+                this.updatePointsInDb(team, taskId, counter, counterField, mainCounterField);
         }
 
-        rankChange(){
-            
-            let currentRankName = document.querySelector('#rankName');
-            let currentRankImg = document.querySelector('#rankImg')
+        updatePointsInDb(team, taskId, points, taskPointsField, totalPointsField){
+            //update database
+            let url = "/" + taskId;
 
-            //players rank update
-            if (mainCounter<=20){
-                currentRankName.textContent = `szeregowy`;
-            } else if (mainCounter>29 && mainCounter<=49) {
-                currentRankName.textContent = `starszy szeregowy`;
-                currentRankImg.src = "ranks/StSzeregowy.png";
-            } else if (mainCounter>49 && mainCounter<=75) {
-                currentRankName.textContent = `kapralu`;
-                currentRankImg.src = "ranks/Kapral.png";
-            } else if (mainCounter>75 && mainCounter<=105) {
-                currentRankName.textContent = `starszy kapralu`;
-                currentRankImg.src = "ranks/StKapral.png";
-            } else if (mainCounter>105 && mainCounter<=139) {
-                currentRankName.textContent = `plutonowy`;
-                currentRankImg.src = "ranks/Plutonowy.png";
-            } else if (mainCounter>139 && mainCounter<=179) {
-                currentRankName.textContent = `sierżancie`;
-                currentRankImg.src = "ranks/Sierzant.png";
-            } else if (mainCounter>179 && mainCounter<=225) {
-                currentRankName.textContent = `starszy sierżancie`;
-                currentRankImg.src = "ranks/StSierzant.png";
-            } else {
-                currentRankName.textContent = `młodszy chorąży`;
-                currentRankImg.src = "ranks/MlChorazy.png";
-            }      
+            const data = JSON.stringify({ "points" : `${points}` });
+            const head = { "Content-Type" : "application/json" }; 
+
+            fetch(url, {
+                method : "POST",
+                body : data,
+                headers: head
+            }).then(
+                response => 
+                {
+                    if (response.status === 400) {
+                        throw new Error('400 - bad request');
+                    }
+                    return response.json()
+                }
+            ).then(
+                json => {
+                    taskPointsField.textContent = `Twój wynik za zadanie = ${json.pointsForTask} punktów`;
+                    totalPointsField.textContent = `Twój wynik - ${json.totalPoints} punktów`
+                    mainCounter = json.totalPoints
+                    //console.log(mainCounter)
+                    
+                    rankChange();
+                    
+                }
+            )
+            .catch(ex => {
+                    console.log(ex)
+                    taskPointsField.textContent = `To zadanie zostało już rozwiązane`;
+                   
+            });
         }
+
+        
 
     connectedCallback() {
         this.shadowRoot.querySelector('#toggle-info').
@@ -419,12 +513,6 @@ class TaskCard extends HTMLElement {
 
 window.customElements.define('task-card', TaskCard)
 
-//Counters
-//let currentTaskNumber = 0;
-let counter = 0
-let mainCounter = 0;
-let teamcolor
-
 //Ending game handlers
 function endGame(){
     //End game warning
@@ -433,9 +521,14 @@ function endGame(){
     //Two level safety exit
     let endButton = document.querySelector('#btnEndGame');
     let finalEndButton = document.querySelector('#btnSumUpEnd');
+    let mainCounterFieldPoints = document.querySelector('#mainCounterPoints')
+
+    //console.log(mainCounter)
+    rankChange()
 
     endButton.disabled = true;
     finalEndButton.style.display = 'block';
+    mainCounterFieldPoints.style.display = 'none';
 }
 
 function finalEndGame(){
