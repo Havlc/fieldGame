@@ -1,3 +1,6 @@
+    * {
+        font-family: 'Cambria', serif;
+    }
     a.item {
         color: white;
         background: darkred;
@@ -7,18 +10,6 @@
         color: darkred;
         background: white;
     }
-    .task-card {
-		font-family: 'Arial', sans-serif;
-		background: lightgray;
-        color:darkslategrey;
-		width: auto;
-		display: grid;
-        grid-template-columns: 1fr 2fr;
-		grid-gap: 10px;
-		margin-bottom: 15px;
-		border-bottom: firebrick 5px solid;
-        border-radius: 20px 20px 40px 40px;
-	}
     .info {
         display: inline-block;
     }
