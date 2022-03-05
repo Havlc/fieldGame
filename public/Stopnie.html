@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Stopnie wojskowe</title>
+    <link rel="stylesheet" href="dragList.css" />
+    <link rel="shortcut icon" href="#">
+    <script
+      src="https://kit.fontawesome.com/3da1a747b2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <h1>Stopnie wojskowe w Wojsku Wolskim</h1>
+    <p>Żeby działać w strukturach Wojska Wolskiego musicie zrozumieć jego hierarchię. 
+      Uporządkujcie stopnie wojskowe od najniższych do najwyższych zgodnie z podanymi korpusami.</p>
+    <p>W jednej turze możesz użyć tylko jednego ruchu pola w górę lub dół. Kliknięcie "sprawdź" kończy turę i ponownie daje możliwość ruchu.</p>
+    <ul class="draggable-list" id="draggable-list"></ul>
+    <button class="check-btn" id="check">
+      Sprawdź
+      <i class="fas fa-paper-plane"></i>
+    </button>
+    <h4 id="rankSolution">Hasło dla zadania to stopień najmłodszego z oficerów</h4>
+    <div id="counter">Liczba kliknięć: </div>
+    <script src="dragList.js"></script>
+  </body>
+</html>
