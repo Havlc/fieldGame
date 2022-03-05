@@ -28,6 +28,7 @@ app.set('view engine', 'ejs');
 
 // Bodyparser
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 
 // Express session
 app.use(session({
@@ -56,26 +57,6 @@ app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/teams', require('./routes/teams'));
 app.use('/tasks', require('./routes/tasks'));
-/*
-//Team management
-pickTeam("blue")
-async function pickTeam(color){
-    try {
-        //const user = await User.findById("61e72d37a18c3fcb8da760a7")
-        const user = await User.findOne({ name: "test"})
-        console.log(user)
-        user.team = color
-        await user.save()
-        console.log(user)
-    } catch (error) {
-        console.log(error.message)
-    }
-}
-
-makeTeam()
-async function makeTeam(color){
-
-}*/
 
 const PORT = process.env.PORT || 5000;
 
