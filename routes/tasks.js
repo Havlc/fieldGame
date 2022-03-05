@@ -53,10 +53,9 @@ router.post('/registertask', (req, res) => {
                             newTask.save()
                             .then(task => {
                                 req.flash('success_msg', 'dodałeś zadanie');
-                                res.redirect('/tasks/registertask');
-                            })
-                            .catch(err => console.log(err));
-                }
+                                res.redirect('/tasks/registertask');                        
+              })
+                            .catch(err => console.log(err));   }
         });
     }
 });
