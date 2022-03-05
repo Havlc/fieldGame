@@ -59,10 +59,34 @@ const TaskSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    yellowPointsForTask:{
+        type: Number,
+        default: 0
+    },
+    redPointsForTask:{
+        type: Number,
+        default: 0
+    },
+    greenPointsForTask:{
+        type: Number,
+        default: 0
+    },
     visibility:{
         type: String,
-        default: 'hidden'
-    }, 
+        default: ''
+    },
+    yellowVisibility:{
+        type: String,
+        default: ''
+    },
+    redVisibility:{
+        type: String,
+        default: ''
+    },
+    greenVisibility:{
+        type: String,
+        default: ''
+    },
     date:{
         type: Date,
         default: Date.now
