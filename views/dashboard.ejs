@@ -4,13 +4,17 @@
 <p class="mb-3">Twoja drużyna: <span id="spanTeamColor" style="background-color: white"><%= user.team %></span></p>
 <hr class="newHr">
 <% tasks.forEach((task) => { %>
-    <task-card name=<%= task.taskNumber %> avatar="icons/<%=task.taskNumber%>.png" maps="maps/<%=task.taskNumber%>.jpg">
+    <task-card  id = "<%=task.id %>"  name=<%= task.taskNumber %> avatar="icons/<%=task.taskNumber%>.jpg" maps="maps/<%=task.taskNumber%>.jpg" mapNext="maps/M<%=task.taskNumber+1%>.jpg">
+        <div id="taskIdNum" slot="taskId"><%= task.id %></div>
         <div slot="title"><%= task.title %></div>
         <div slot="content"><%= task.content %></div>
-        <div slot="link"><%= task.link %></div>
+        <a slot="link" href="/<%= task.link %>" target="blank"><%= task.link %></a>
         <div slot="podpowiedz1"><%= task.firstHint %></div>
         <div slot="podpowiedz2"><%= task.secondHint %></div>
-        <div slot="rozwiazanie"><%= task.solution %></div>
+        <div slot="rozwiazanie"><%= task.solution %></div>   
+        <img mapNext="maps/<%=task.taskNumber%>.jpg"/>
+        <div slot="visibility"><%= visibility.get(task._id) %></div>
+        <div slot="counter">Twój wynik za zadanie: <%= pointsForTask.get(task._id) %> punktów</div>
     </task-card>
     
     <hr>
@@ -19,6 +23,9 @@
     <h6 id="sumUpInfo">Uwaga! jeśli zakończysz grę, nie będzie możliwe jej kontynuowanie.</h6>
     <button class="btnEnd" id="btnEndGame">Zakończ grę</button>
     <button class="btnEnd" id="btnSumUpEnd" style="display: none;">Zakończ i podsumuj</button>
-    <h6 id="mainCounter">Counter podsumowujący</h6>
-    
+    <h6 id="mainCounter">Razem punktów: </h6><p id="mainCounterPoints"><%=user.totalPoints%></p>
+        
     <script src="../taskCard.js"></script>
+    <script>
+        rankChange()
+    </script>
