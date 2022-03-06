@@ -59,34 +59,31 @@ const TaskSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    yellowPointsForTask:{
-        type: Number,
-        default: 0
-    },
-    redPointsForTask:{
-        type: Number,
-        default: 0
-    },
-    greenPointsForTask:{
-        type: Number,
-        default: 0
-    },
-    visibility:{
-        type: String,
-        default: ''
-    },
-    yellowVisibility:{
-        type: String,
-        default: ''
-    },
-    redVisibility:{
-        type: String,
-        default: ''
-    },
-    greenVisibility:{
-        type: String,
-        default: ''
-    },
+    teamResults: [{
+        hintOneClicked: {
+            type: Boolean,
+            default: false
+        },
+        hintTwoClicked: {
+            type: Boolean,
+            default: false
+        },
+        SolutioneClicked: {
+            type: Boolean,
+            default: false
+        },
+        pointsForTask: {
+            type: Number,
+            default: 0
+        },
+        visibility: {
+            type: String,
+            default: "visible"
+        },
+        team: {
+            type: String
+        }
+    }],
     date:{
         type: Date,
         default: Date.now
