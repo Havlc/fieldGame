@@ -1,0 +1,46 @@
+<h1 class="mt-4">Podsumowanie gry</h1>
+<p class="lead mb-3">Baczność! <span id=rankName><%= user.rank %></span> <%= user.name %></p>
+<img id="rankImg" alt="naramiennik" src="ranks/Szeregowy.png" height="30vh" />
+<p class="mb-3">Twoja drużyna: <span id="spanTeamColor" style="background-color: white"><%= user.team %></span></p>
+<hr class="newHr">
+<div>Drużynowo:</div>
+<% team.forEach((team) => { %>
+    <div style="margin: 5px; border-radius:25px; color: black; text-align: center;">  
+        <div><%= team.name %></div>
+        <div><%= team.totalPoints %></div>
+        <div class="spanTeamColor"><%= team.color %></div>
+    </div>  
+        <hr>
+        <% }) %>
+<hr class="newHr">
+
+<div>Indywidualnie:</div>
+<% users.forEach((user) => { %>
+<div style="margin: 5px; border-radius:25px; color: black; text-align: center;">
+    <div><%= user.name %></div>
+    <div><%= user.totalPoints %></div>
+    <div><%= user.rank %></div>
+    <div class="spanTeamColor"><%= user.team %></div>
+    <div><%= team.name %></div>
+</div>
+    <hr>
+    <% }) %>
+<hr class="newHr">
+
+    <h6 id="endGameZone">Strefa zakończenia gry</h6>
+    <h6 id="sumUpInfo">Uwaga! jeśli zakończysz grę, nie będzie możliwe jej kontynuowanie.</h6>
+    <button class="btnEnd" id="btnEndGame">Zakończ grę</button>
+    <button class="btnEnd" id="btnSumUpEnd" style="display: none;">Zakończ i podsumuj</button>
+    <h6 id="mainCounter">Razem punktów: </h6><p id="mainCounterPoints"><%=user.totalPoints%></p>
+    <p>Dziękuję za udział w grze</p>   
+    
+    <script src="../taskCard.js"></script>
+    <script>
+    function changeTeamColor(){
+        let newTeamColors = document.querySelectorAll('.spanTeamColor')
+        newTeamColors.forEach(item => item.parentNode.style.backgroundColor=item.innerText)  
+    };
+    changeTeamColor();
+
+rankChange()
+    </script>
