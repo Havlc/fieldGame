@@ -38,7 +38,9 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
         user: req.user,
         info: "informacja",
         tasks: tasks,
-        team: req.teams
+        team: req.teams,
+        visibility: calculateVisibilityMap(req.user, tasks),
+        pointsForTask: calculatePointsMap(req.user, tasks)
       })
     } else {
       console.log("ERROR!")
@@ -46,13 +48,61 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
   })
 })
 
+
+function calculateVisibilityMap(user, tasks) {
+  let visibilityMap = new Map();
+  const userColor = user.team;
+  tasks.forEach(task => {
+    let teamResult = task.teamResults.find(x => x.team == userColor);
+    if(teamResult){
+      visibilityMap.set(task._id, teamResult.visibility)
+    }
+    else {
+      visibilityMap.set(task._id, 'display')
+    }
+  });
+  return visibilityMap;
+}
+
+function calculatePointsMap(user, tasks) {
+  let pointsMap = new Map();
+  const userColor = user.team;
+  tasks.forEach(task => {
+    let teamResult = task.teamResults.find(x => x.team == userColor);
+    if(teamResult){
+      pointsMap.set(task._id, teamResult.pointsForTask)
+    }
+    else {
+      pointsMap.set(task._id, 0)
+    }
+  });
+  return pointsMap;
+}
+
+router.get('/scoreboard', ensureAuthenticated, async (req, res) => {
+  let team = await Team.find().sort({
+    totalPoints: -1
+  }).then((team) => team)
+  console.log(team)
+
+  User.find().sort({
+    totalPoints: -1
+  }).then((users) => {
+    if (users) {
+      res.render('scoreboard', {
+        user: req.user,
+        users: users,
+        team: team
+      })
+    } else {
+      console.log("ERROR!")
+    }
+  })
+})
+
+
 router.get('/:id', ensureAuthenticated, async (req, res) => {
   console.log(req.params.id)
-
-  //const updatedTask = await Task.findById(req.params.id)
-  //updatedTask.pointsForTask = 3
-  //await updatedTask.save();
-  //console.log(updatedTask)
 
   res.render('dashboardForOne', {
     user: req.user,
@@ -61,93 +111,112 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
   })
 })
 
+router.post('/:id/hintOne', ensureAuthenticated, async (req, res) => {
+  const team = req.user.team
+  if (!await Task.exists({
+      "_id": req.params.id,
+      "teamResults.team": team
+    })) {
+    await Task.findByIdAndUpdate({
+      _id: req.params.id
+    }, {
+      $push: {
+        "teamResults": {"team": team}
+      }
+    }, {
+      new: true
+    })
+  }
+
+  await Task.findOneAndUpdate({
+    "_id": req.params.id,
+    "teamResults.team": team
+  }, {
+    "$set": {
+      "teamResults.$.hintOneClicked": true,
+    }
+  }, {
+    new: true
+  });
+
+  let ob = {
+    success: true
+  }
+  res.json(ob)
+})
+
 router.post('/:id', ensureAuthenticated, async (req, res) => {
   console.log("-------" + req.params.id)
   console.log("-------" + req.body.points)
   console.log("-------" + req.json)
 
-  const taskVisibility = await Task.findById({
-    _id: req.params.id
-  })
-  const team = req.user.team
 
-  if (taskVisibility.visibility == 'hidden') {
-    res.status(400).send()
-  } else {
-    let updatedTask = await Task.findByIdAndUpdate({
+  const team = req.user.team
+  let taskVisibility = "display";
+  if (!await Task.exists({
+      "_id": req.params.id,
+      "teamResults.team": team
+    })) {
+    await Task.findByIdAndUpdate({
       _id: req.params.id
     }, {
-      $set: {
-        pointsForTask: req.body.points,
+      $push: {
+        "teamResults": {"team": team}
       }
     }, {
       new: true
     })
-    
-    if (team == "yellow"){
-      updatedTask = await Task.findByIdAndUpdate({
-        _id: req.params.id
-      }, {
-        $set: {
-          yellowPointsForTask: req.body.points,
-          yellowVisibility: 'hidden'
-        }
-      }, {
-        new: true
-      })
-    } else if (team == "red"){
-      updatedTask = await Task.findByIdAndUpdate({
-        _id: req.params.id
-      }, {
-        $set: {
-          redPointsForTask: req.body.points,
-          redVisibility: 'hidden'
-        }
-      }, {
-        new: true
-      })
-    } else if (team == "green"){
-      updatedTask = await Task.findByIdAndUpdate({
-        _id: req.params.id
-      }, {
-        $set: {
-          greenPointsForTask: req.body.points,
-          greenVisibility: 'hidden'
-        }
-      }, {
-        new: true
-      })
-    }
+  }
+  else {
+    let currentTask = await Task.findById({
+      _id: req.params.id,
+    })
+    taskVisibility = currentTask.teamResults.find(teamResult => teamResult.team == team).visibility
+  }
 
-    // pobrać dane z przycisków i uzyskaną sumę punktów dodać do counter i do DB do pointsForTask
-    //updatedTask.pointsForTask = 9;
-    console.log(updatedTask)
+   if (taskVisibility == 'hidden') {
+    res.status(400).send()
+  } else {
+    const updatedTeamResult = await Task.findOneAndUpdate({
+      "_id": req.params.id,
+      "teamResults.team": team
+    }, {
+      "$set": {
+        "teamResults.$.pointsForTask": req.body.points,
+        "teamResults.$.visibility": "hidden"
+      }
+    }, {
+      new: true
+    });
 
-    console.log(req.user.totalPoints)
-    //await updatedTask.save();
-
-    //const result = await User.find(req.user)
-    const result = await User.findByIdAndUpdate({
+    await User.findByIdAndUpdate({
       _id: req.user.id
     }, {
       $inc: {
-        totalPoints: updatedTask.pointsForTask
+        totalPoints: req.body.points
+      }
+    }, {
+      new: true
+    });
+
+    const updatedTeam = await Team.findOneAndUpdate({
+      color: team
+    }, {
+      $inc: {
+        totalPoints: req.body.points
       }
     }, {
       new: true
     })
-    console.log(team)
-
+    console.log(updatedTeam)
     let ob = {
       success: true,
-      pointsForTask: updatedTask.pointsForTask,
-      //yellowPointsForTask: updatedTask.pointsForTask,
-      //team: result.team,
-      totalPoints: result.totalPoints,
+      pointsForTask: req.body.points,
+      totalPoints: updatedTeam.totalPoints,
       visibility: 'hidden'
     }
     res.json(ob)
-  }
+  };
 })
 
 module.exports = router;
