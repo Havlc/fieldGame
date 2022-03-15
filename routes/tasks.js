@@ -10,7 +10,7 @@ router.get('/registertask', (req, res) => res.render('registertask', {layout: 's
 // Register post
 router.post('/registertask', (req, res) => {
     //console.log('post connected')
-    const { title, taskNumber, content, firstHint, secondHint, solution } = req.body;
+    const { title, taskNumber, content, firstHint, secondHint, solution, link } = req.body;
     //console.log(req.body)
     let errors = [];
 
@@ -39,7 +39,8 @@ router.post('/registertask', (req, res) => {
                         content, 
                         firstHint, 
                         secondHint, 
-                        solution
+                        solution,
+                        link
                     });
                 } else {
                     let newTask = new Task({
@@ -48,7 +49,8 @@ router.post('/registertask', (req, res) => {
                         content, 
                         firstHint, 
                         secondHint, 
-                        solution
+                        solution,
+                        link
                     });
                             newTask.save()
                             .then(task => {
