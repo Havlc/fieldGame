@@ -247,6 +247,10 @@ class TaskCard extends HTMLElement {
             //toggle Hint number 1
             const info = this.shadowRoot.querySelector('#hint1');
             const toggleBtn = this.shadowRoot.querySelector('#pdp1');
+            const taskId = this.children[0].innerText;
+            const team = document.querySelector('#spanTeamColor').innerText
+
+            this.updateHintOneUsed(taskId)
                         
             if(!this.showInfo) {
                 info.style.display = 'block';
@@ -432,6 +436,35 @@ class TaskCard extends HTMLElement {
                 mainCounterFieldPoints.style.display = 'none';
                 this.updatePointsInDb(team, taskId, counter, counterField, mainCounterField);
         }
+/*
+        updateHintOneUsed(taskId)
+        {
+            let url = "/" + taskId + "/hintOne"
+
+            const data = JSON.stringify({ "hintOne" : true });
+            const head = { "Content-Type" : "application/json" }; 
+
+            fetch(url, {
+                method : "POST",
+                body : data,
+                headers: head
+            }).then(
+                response => 
+                {
+                    if (response.status === 400) {
+                        throw new Error('400 - bad request');
+                    }
+                    return response.json()
+                }
+            ).then(
+                json => {
+                         console.log(json)                  
+                }
+            )
+            .catch(ex => {
+                    console.log(ex)
+            });
+        }*/
 
         updatePointsInDb(team, taskId, points, taskPointsField, totalPointsField){
             //update database
