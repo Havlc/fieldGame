@@ -1,0 +1,57 @@
+<h1 class="mt-4">Strona zadań</h1>
+<p class="lead mb-3">Witaj <span id=rankName><%= user.rank %></span> <%= user.name %></p>
+<img id="rankImg" alt="naramiennik" src="ranks/Szeregowy.png" height="30vh" />
+<p class="mb-3">Twoja drużyna: <span id="spanTeamColor" style="background-color: white"><%= user.team %></span></p>
+<hr class="newHr">
+<%=task.id%>
+<form action="/<%=task.id%>" method="POST">
+    <task-card name=<%= task.taskNumber %> avatar="icons/<%=task.taskNumber%>.jpg" maps="maps/<%=task.taskNumber%>.jpg">
+        <div slot="title"><%= task.title %></div>
+        <div slot="content"><%= task.content %></div>
+        <a slot="link" href="/<%= task.link %>" target="blank">Link do zadania</a>
+        <div slot="podpowiedz1"><%= task.firstHint %></div>
+        <div slot="podpowiedz2"><%= task.secondHint %></div>
+        <div slot="rozwiazanie"><%= task.solution %></div>
+    </task-card>
+    <%= task.pointsForTask %>
+    <hr>
+    <button type="submit" class="btn btn-primary btn-block">Zatwierdź</button>
+</form>
+    <a class="nextTask" href="/<%=task.nextTask%>" style="background-color: darkred">Kolejne zadanie</a>
+    <h6 id="endGameZone">Strefa zakończenia gry</h6>
+    <h6 id="sumUpInfo">Uwaga! jeśli zakończysz grę, nie będzie możliwe jej kontynuowanie.</h6>
+    <button class="btnEnd" id="btnEndGame">Zakończ grę</button>
+    <button class="btnEnd" id="btnSumUpEnd" style="display: none;">Zakończ i podsumuj</button>
+    <h6 id="mainCounter">Counter podsumowujący: <%= user.totalPoints %></h6>
+    
+    <script src="../taskCard.js"></script>
+
+    <script>
+        function sendSolution(userId,taskId)
+        {
+            let url = "http://localhost:8080/" + taskId;
+
+            let xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            console.log(xhr.responseText);
+        }};
+
+        let data = `{
+        "Id": 78912,
+        "Customer": "Jason Sweet",
+        "Quantity": 1,
+        "Price": 18.00
+        }`;
+
+        xhr.send(data);
+                }
+    </script>
