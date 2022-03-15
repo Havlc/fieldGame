@@ -12,7 +12,21 @@
         font-family: 'Lato', sans-serif;
         }
         button {
-            background: darkred;
+        background: #722F37;
+        color: #c3c7ca;
+        border-radius: 10px;
+        padding: 10px;
+        min-width: 200px;
+        min-height: 40px;
+        }
+        button:hover {
+        background: crimson;
+        color: darkred;
+        border-radius: 0 10px;
+        }
+        hr {
+        width: 100%;
+        color:#722F37;
         }
         img {
             height: 30vh;
@@ -29,11 +43,6 @@
             padding: 5vh;
             display: none;
         }
-
-        #btnHint2{
-            display: block;
-            background: green;
-        }
         .quizMain {
             display: none;
         }
@@ -49,7 +58,7 @@
     <button id="quizStart">Rozpocznij rejestr obserwacji</button>
     <div class="quizMain">
         <div>Grupa rozpoczęła pościg - wskażcie, które jednostki w nim uczetniczą</div>
-        <div class="questionTab" id="questionOne">Piechota</div>
+        <div class="questionTab" id="questionOne"><b>Piechota</b></div>
         <img src="./quizImg/ukr.jpeg" class="quizBox wrong" id="ukr"/>
         <img src="./quizImg/pol.jpeg" class="quizBox wrong" id="pol"/>
         <img src="./quizImg/green.jpg" class="quizBox correct" id="rus"/>
