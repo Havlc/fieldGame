@@ -36,7 +36,8 @@ const UserSchema = new mongoose.Schema({
         default: false
     },
     totalPoints: {
-        type: Number
+        type: Number,
+        default: 0
     }
 });
 
