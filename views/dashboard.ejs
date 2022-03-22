@@ -1,17 +1,18 @@
+<% if (gameStatus.started){ %>
 <h1 class="mt-4">Strona zadań</h1>
 <p class="lead mb-3">Witaj <span id=rankName><%= user.rank %></span> <%= user.name %></p>
 <img id="rankImg" alt="naramiennik" src="ranks/Szeregowy.png" height="30vh" />
 <p class="mb-3">Twoja drużyna: <span id="spanTeamColor" style="background-color: white"><%= user.team %></span></p>
 <hr class="newHr">
 <% tasks.forEach((task) => { %>
-    <task-card  id = "<%=task.id %>"  name=<%= task.taskNumber %> avatar="icons/<%=task.taskNumber%>.jpg" maps="maps/<%=task.taskNumber%>.jpg" mapNext="maps/M<%=task.taskNumber+1%>.jpg">
+    <task-card  title = "<%=task.title %>"  id = "<%=task.id %>"  name=<%= task.taskNumber %> avatar="icons/<%=task.taskNumber%>.jpg" maps="maps/<%=task.taskNumber%>.jpg" mapNext="maps/M<%=task.taskNumber+1%>.jpg">
         <div id="taskIdNum" slot="taskId"><%= task.id %></div>
         <div slot="title"><%= task.title %></div>
         <div slot="content"><%= task.content %></div>
         <a slot="link" href="/<%= task.link %>" target="blank"><%= task.link %></a>
         <div slot="podpowiedz1"><%= task.firstHint %></div>
         <div slot="podpowiedz2"><%= task.secondHint %></div>
-        <div slot="rozwiazanie"><%= task.solution %></div>   
+        <div slot="rozwiazanie"><%= task.solution %></div> 
         <img mapNext="maps/<%=task.taskNumber%>.jpg"/>
         <div slot="visibility"><%= visibility.get(task._id) %></div>
         <div slot="counter">Twój wynik za zadanie: <%= pointsForTask.get(task._id) %> punktów</div>
@@ -24,8 +25,16 @@
     <button class="btnEnd" id="btnEndGame">Zakończ grę</button>
     <button class="btnEnd" id="btnSumUpEnd" style="display: none;">Zakończ i podsumuj</button>
     <h6 id="mainCounter">Razem punktów: </h6><p id="mainCounterPoints"><%=user.totalPoints%></p>
-        
     <script src="../taskCard.js"></script>
     <script>
         rankChange()
     </script>
+    <%  } else { %>
+        <h1 class="mt-4">Strona zadań</h1>
+        <p class="lead mb-3">Witaj <%= user.name %></p>
+        <hr class="newHr">
+        <div> Bądźcie cierpliwi...</div>
+        <iframe src="https://giphy.com/embed/17lmXBAzihgOq2Eciz" width="100%" height="250px" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        <hr>
+            
+    <%}  %>

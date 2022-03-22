@@ -3,7 +3,7 @@
 <img id="rankImg" alt="naramiennik" src="ranks/Szeregowy.png" height="30vh" />
 <p class="mb-3">Twoja drużyna: <span id="spanTeamColor" style="background-color: white"><%= user.team %></span></p>
 <hr class="newHr">
-<%=task.id%>
+<% tasks.forEach((task) => { %>
 <form action="/<%=task.id%>" method="POST">
     <task-card name=<%= task.taskNumber %> avatar="icons/<%=task.taskNumber%>.jpg" maps="maps/<%=task.taskNumber%>.jpg">
         <div slot="title"><%= task.title %></div>
@@ -15,9 +15,11 @@
     </task-card>
     <%= task.pointsForTask %>
     <hr>
+    
     <button type="submit" class="btn btn-primary btn-block">Zatwierdź</button>
 </form>
     <a class="nextTask" href="/<%=task.nextTask%>" style="background-color: darkred">Kolejne zadanie</a>
+    <% }) %>
     <h6 id="endGameZone">Strefa zakończenia gry</h6>
     <h6 id="sumUpInfo">Uwaga! jeśli zakończysz grę, nie będzie możliwe jej kontynuowanie.</h6>
     <button class="btnEnd" id="btnEndGame">Zakończ grę</button>
