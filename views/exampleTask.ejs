@@ -1,0 +1,242 @@
+<h1 class="mt-4">Strona zadań</h1>
+<p class="lead mb-3">Witaj <span id=rankName><%= user.rank %></span> <%= user.name %></p>
+<img id="rankImg" alt="naramiennik" src="ranks/Szeregowy.png" height="30vh" />
+<p class="mb-3">Twoja drużyna: <span id="spanTeamColor" style="background-color: white"><%= user.team %></span></p>
+<hr class="newHr">
+
+    <h4>Header</h4>
+    <h5>Task text: </h5>
+    <div>Subheader</div>
+    <hr>
+    <button id="quizStart">Start</button>
+    <div class="quizMain">
+        <div>Qest1</div>
+        <div class="questionTab" id="questionOne"><b>Q1</b></div>
+        <img src="./icons/2.jpg" class="quizBox wrong" id=""/>
+        <img src="./icons/28.jpg" class="quizBox correct" id=""/>
+        <img src="./icons/1.jpg" class="quizBox wrong" id="rus"/>
+        <br/>
+            <img src="./icons/3.jpg" class="quizBoxHint hintOne" id=""/>
+            <img src="./icons/4.jpg" class="quizBoxHint hintOne" id=""/>
+            <img src="./icons/15.jpg" class="quizBoxHint hintOne" id=""/>
+        <button class="quizBtn" id="btnHint1">Podpowiedź</button>
+        <hr>
+        <div class="questionTab" id="questionTwo">Q2</div>
+        <img src="./icons/2.jpg" class="quizBox wrong" id=""/>
+        <img src="./icons/1.jpg" class="quizBox correct" id="odp1"/>
+        <img src="./icons/11.jpg" class="quizBox wrong" id=""/>
+        <br/>
+            <img src="./icons/5.jpg" class="quizBoxHint hintTwo" id=""/>
+            <img src="./icons/21.jpg" class="quizBoxHint hintTwo" id="odp1hint"/>
+            <img src="./icons/12.jpg" class="quizBoxHint hintTwo" id=""/>
+        <button class="quizBtn" id="btnHint2">Podpowiedź</button>
+        <hr>
+        <div class="questionTab" id="questionThree">Q3</div>
+        <img src="./icons/1.jpg" class="quizBox wrong" id="odp2"/>
+        <img src="./icons/22.jpg" class="quizBox correct" id=""/>
+        <img src="./icons/16.jpg" class="quizBox wrong" id=""/>
+        <br/>
+            <img src="./icons/11.jpg" class="quizBoxHint hintThree" id=""/>
+            <img src="./icons/27.jpg" class="quizBoxHint hintThree" id=""/>
+            <img src="./icons/13.jpg" class="quizBoxHint hintThree" id=""/>
+        <button class="quizBtn" id="btnHint3">Podpowiedź</button>
+        <hr>
+        <div class="questionTab" id="questionFour">Q4</div>
+        <img src="./icons/2.jpg" class="quizBox wrong" id=""/>
+        <img src="./icons/1.jpg" class="quizBox correct" id="odp3"/>
+        <img src="./icons/15.jpg" class="quizBox wrong" id=""/>
+        <br/>
+            <img src="./icons/2.jpg" class="quizBoxHint hintFour" id=""/>
+            <img src="./icons/28.jpg" class="quizBoxHint hintFour" id="odp3hint"/>
+            <img src="./icons/1.jpg" class="quizBoxHint hintFour" id="t"/>
+        <button class="quizBtn" id="btnHint4">Podpowiedź</button>
+        <hr>
+        <div class="questionTab" id="questionFive">Q5</div>
+        <img src="./icons/1.jpg" class="quizBox wrong" id="odp4"/>
+        <img src="./icons/29.jpg" class="quizBox correct" id=""/>
+        <img src="./icons/18.jpg" class="quizBox wrong" id=""/>
+        <br/>
+            <img src="./icons/2.jpg" class="quizBoxHint hintFive" id="mighint"/>
+            <img src="./icons/28.jpg" class="quizBoxHint hintFive" id=""/>
+            <img src="./icons/1.jpg" class="quizBoxHint hintFive" id=""/>
+        <button class="quizBtn" id="btnHint5">Podpowiedź</button>
+        <hr/>
+        <button type="submit" class="quizBtn" id="btnEnd">Confirm</button>
+        <div id="quizResult">Twój wynik za zadanie:</div>
+    </div>
+    
+    <h6 id="endGameZone">Strefa zakończenia gry</h6>
+    <h6 id="sumUpInfo">Uwaga! jeśli zakończysz grę, nie będzie możliwe jej kontynuowanie.</h6>
+    <button class="btnEnd" id="btnEndGame">Zakończ grę</button>
+    <button class="btnEnd" id="btnSumUpEnd" style="display: none;">Zakończ i podsumuj</button>
+    <h6 id="mainCounter">Razem punktów: </h6><p id="mainCounterPoints"><%=user.totalPoints%></p>
+        
+    <style>
+        body {
+        background-color: #272b30;
+        color: #c3c7ca;
+        font-family: 'Lato', sans-serif;
+        }
+        button {
+        background: #722F37;
+        color: #c3c7ca;
+        border-radius: 10px;
+        padding: 10px;
+        min-width: 200px;
+        min-height: 40px;
+        }
+        button:hover {
+        background: crimson;
+        color: darkred;
+        border-radius: 0 10px;
+        }
+        hr {
+        width: 100%;
+        color:#722F37;
+        }
+        img {
+            height: 30vh;
+            width: 40vh;
+        }
+        .quizBox {
+            padding: 5vh;
+        }
+        .quizBox:hover {
+            border: 1px solid steelblue;
+            padding: 5vh;
+        }
+        .quizBoxHint {
+            padding: 5vh;
+            display: none;
+        }
+        .quizMain {
+            display: none;
+        }
+
+    </style>
+    <script src="../taskCard.js"></script>
+    <script>
+        rankChange()
+        const correctAnswersTab= [
+        odp1, odp2, odp3, odp4
+    ]
+    const quizStart = document.querySelector('#quizStart');
+    const hintOneBtn = document.querySelector('#btnHint1');
+    const hintTwoBtn = document.querySelector('#btnHint2');
+    const hintThreeBtn = document.querySelector('#btnHint3');
+    const hintFourBtn = document.querySelector('#btnHint4');
+    const hintFiveBtn = document.querySelector('#btnHint5');
+    const wrongAnswers = document.querySelectorAll('.wrong');
+    const correctAnswers = document.querySelectorAll('.correct');
+    const endQuiz = document.querySelector('#btnEnd');
+    let quizResult = 0;
+
+    wrongAnswers.forEach((answer)=>{
+        createOneTimeListener(answer, 'click', function() {
+        });
+
+        function createOneTimeListener(element, click , listener) {
+            element.addEventListener(click, function() {
+                element.style.border="1px solid red";
+                //alert('zła odpowiedź')
+                quizResult-=1
+                element.removeEventListener(click, arguments.callee);
+                return listener();
+            }); 
+        }
+
+    })
+
+    correctAnswers.forEach((answer)=>{
+        createOneTimeListener(answer, 'click', function() {
+        });
+
+        function createOneTimeListener(element, click , listener) {
+            element.addEventListener(click, function() {
+                element.style.border="1px solid green";
+                quizResult+=2
+                element.removeEventListener(click, arguments.callee);
+                return listener();
+            });
+        }
+    })
+
+    quizStart.addEventListener('click', (main) => {
+        document.querySelector('.quizMain').style.display="block"
+        main.target.style.display="none"
+    })
+
+   hintOneBtn.addEventListener('click', (btn) => {
+        document.querySelectorAll('.hintOne').forEach((item)=>item.style.display="inline-block");
+        btn.target.style.display="none";
+        quizResult-=1
+    })
+    hintTwoBtn.addEventListener('click', (btn) => {
+        document.querySelectorAll('.hintTwo').forEach((item)=>item.style.display="inline-block");
+        btn.target.style.display="none";
+        quizResult-=1
+    })
+    hintThreeBtn.addEventListener('click', (btn) => {
+        document.querySelectorAll('.hintThree').forEach((item)=>item.style.display="inline-block");
+        btn.target.style.display="none";
+        quizResult-=1
+    })
+    hintFourBtn.addEventListener('click', (btn) => {
+        document.querySelectorAll('.hintFour').forEach((item)=>item.style.display="inline-block");
+        btn.target.style.display="none";
+        quizResult-=1
+    })
+    hintFiveBtn.addEventListener('click', (btn) => {
+        document.querySelectorAll('.hintFive').forEach((item)=>item.style.display="inline-block");
+        btn.target.style.display="none";
+        quizResult-=1
+    })
+    endQuiz.addEventListener('click', (btn) => {
+        let result = document.querySelector('#quizResult');
+        if (quizResult>0){
+            result.textContent=`Zdobyliście: ${quizResult} punktów, Hasło brzmi: password`;
+        } else {
+            result.textContent=`Zdobyliście: 0 punktów`
+        }
+    })
+
+    let team = "blue";
+
+
+    function updatePointsInDb(team, taskId, points, taskPointsField, totalPointsField){
+            //update database
+            let url = "/" + taskId;
+
+            const data = JSON.stringify({ "points" : `${points}` });
+            const head = { "Content-Type" : "application/json" }; 
+
+            fetch(url, {
+                method : "POST",
+                body : data,
+                headers: head
+            }).then(
+                response => 
+                {
+                    if (response.status === 400) {
+                        throw new Error('400 - bad request');
+                    }
+                    return response.json()
+                }
+            ).then(
+                json => {
+                    taskPointsField.textContent = `Twój wynik za zadanie = ${json.pointsForTask} punktów`;
+                    totalPointsField.textContent = `Twój wynik - ${json.totalPoints} punktów`
+                    mainCounter = json.totalPoints
+                    //console.log(mainCounter)
+                    
+                    //rankChange();
+                    
+                }
+            )
+            .catch(ex => {
+                    console.log(ex)
+                    taskPointsField.textContent = `To zadanie zostało już rozwiązane`;
+                   
+            });
+        }
+    </script>
