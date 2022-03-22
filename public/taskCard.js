@@ -250,7 +250,7 @@ class TaskCard extends HTMLElement {
             const taskId = this.children[0].innerText;
             const team = document.querySelector('#spanTeamColor').innerText
 
-            this.updateHintOneUsed(taskId)
+            //this.updateHintOneUsed(taskId)
                         
             if(!this.showInfo) {
                 info.style.display = 'block';
@@ -436,8 +436,8 @@ class TaskCard extends HTMLElement {
                 mainCounterFieldPoints.style.display = 'none';
                 this.updatePointsInDb(team, taskId, counter, counterField, mainCounterField);
         }
-/*
-        updateHintOneUsed(taskId)
+
+        /*updateHintOneUsed(taskId)
         {
             let url = "/" + taskId + "/hintOne"
 
@@ -488,7 +488,7 @@ class TaskCard extends HTMLElement {
             ).then(
                 json => {
                     taskPointsField.textContent = `Twój wynik za zadanie = ${json.pointsForTask} punktów`;
-                    totalPointsField.textContent = `Twój wynik - ${json.totalPoints} punktów`
+                    totalPointsField.textContent = `Wasz wynik - ${json.totalPoints} punktów`
                     mainCounter = json.totalPoints
                     //console.log(mainCounter)
                     
