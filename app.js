@@ -58,6 +58,6 @@ app.use('/users', require('./routes/users'));
 app.use('/teams', require('./routes/teams'));
 app.use('/tasks', require('./routes/tasks'));
 
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
-app.listen(PORT, console.log(`Server running on  ${PORT}`));
+app.listen(port, console.log(`Server running on  ${port}`));
