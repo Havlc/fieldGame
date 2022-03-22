@@ -14,7 +14,7 @@ app.use(express.static('public'));
 require('./config/passport')(passport);
 
 // DB Config
-const db = require('./config/keys').MongoURI;
+const db = process.env.MongoURI; /*require('./config/keys').MongoURI;*/ 
 const User = require('./models/User');
 
 // Connect to Mongo

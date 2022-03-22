@@ -9,7 +9,9 @@ const crypto = require('crypto');
 
 // user model
 const User = require('../models/User');
-const { GMAILUSER, GMAILPW } = require('../config/keys');
+//const { GMAILUSER, GMAILPW } = require('../config/keys');
+const GMAILUSER = process.env.GMAILUSER;
+const GMAILPW = process.env.GMAILPW;
 
 // Login Page
 router.get('/login', (req, res) => res.render('login', {layout: 'startLayout'}));
