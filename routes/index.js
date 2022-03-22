@@ -6,6 +6,7 @@ const {
 const Task = require('../models/Task');
 const User = require('../models/User');
 const Team = require('../models/Team');
+const Game = require('../models/Game');
 
 //Add JSDOM
 const jsdom = require("jsdom");
@@ -28,8 +29,31 @@ router.get("/landing", (req, res) => {
   res.render("landing");
 });
 
+//GET exampleTask
+router.get('/exampleTask', ensureAuthenticated, (req, res) => {
+  Task.find().sort({
+    taskNumber: 1
+  }).then((tasks) => {
+    if (tasks) {
+      res.render('exampleTask', {
+        user: req.user,
+        info: "informacja",
+        tasks: tasks,
+        team: req.teams,
+        visibility: calculateVisibilityMap(req.user, tasks),
+        pointsForTask: calculatePointsMap(req.user, tasks)
+      })
+    } else {
+      console.log("ERROR!")
+    }
+  })
+})
+
 // Dashboard
-router.get('/dashboard', ensureAuthenticated, (req, res) => {
+router.get('/dashboard', ensureAuthenticated, async (req, res) => {
+  let gameStatus = await Game.findOne({
+    uuid: "sobota"
+  })
   Task.find().sort({
     taskNumber: 1
   }).then((tasks) => {
@@ -40,7 +64,8 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
         tasks: tasks,
         team: req.teams,
         visibility: calculateVisibilityMap(req.user, tasks),
-        pointsForTask: calculatePointsMap(req.user, tasks)
+        pointsForTask: calculatePointsMap(req.user, tasks),
+        gameStatus: gameStatus
       })
     } else {
       console.log("ERROR!")
@@ -104,11 +129,23 @@ router.get('/scoreboard', ensureAuthenticated, async (req, res) => {
 router.get('/:id', ensureAuthenticated, async (req, res) => {
   console.log(req.params.id)
 
-  res.render('dashboardForOne', {
-    user: req.user,
-    info: "informacja",
-    task: updatedTask
+  Task.find().sort({
+    taskNumber: 1
+  }).then((tasks) => {
+    if (tasks) {
+      res.render('dashboardForOne', {
+        user: req.user,
+        info: "informacja",
+        tasks: tasks,
+        team: req.teams,
+        visibility: calculateVisibilityMap(req.user, tasks),
+        pointsForTask: calculatePointsMap(req.user, tasks)
+      })
+    } else {
+      console.log("ERROR!")
+    }
   })
+
 })
 
 router.post('/:id/hintOne', ensureAuthenticated, async (req, res) => {
@@ -218,5 +255,20 @@ router.post('/:id', ensureAuthenticated, async (req, res) => {
     res.json(ob)
   };
 })
+
+router.get('/startGame/trudnehaslo', ensureAuthenticated, async (req, res) => {
+  console.log(req.params.id)
+
+  await Game.findOneAndUpdate({
+    uuid: "sobota"}, {$set: {
+      started: true
+    }}, {
+      new: true
+    })
+    let obb = {}
+    res.json(obb)
+})
+
+
 
 module.exports = router;
