@@ -5,7 +5,7 @@
 <p class="mb-3">Twoja drużyna: <span id="spanTeamColor" style="background-color: white"><%= user.team %></span></p>
 <hr class="newHr">
 <% tasks.forEach((task) => { %>
-    <task-card  title = "<%=task.title %>"  id = "<%=task.id %>"  name=<%= task.taskNumber %> avatar="icons/<%=task.taskNumber%>.jpg" maps="maps/<%=task.taskNumber%>.jpg" mapNext="maps/M<%=task.taskNumber+1%>.jpg">
+    <task-card  title = "<%=task.title %>"  id = "<%=task.id %>"  name=<%= task.taskNumber %> avatar="icons/<%=task.taskNumber%>.jpg" maps="maps/<%=task.taskNumber%>.jpg" mapNext="maps/M<%=task.taskNumber-1%>.jpg">
         <div id="taskIdNum" slot="taskId"><%= task.id %></div>
         <div slot="title"><%= task.title %></div>
         <div slot="content"><%= task.content %></div>
