@@ -29,8 +29,9 @@
         color:#722F37;
         }
         img {
-            height: 30vh;
-            width: 40vh;
+            min-height: 50vh;
+            width: 60vh;
+            padding-left: 0;
         }
         .quizBox {
             padding: 5vh;
@@ -40,10 +41,10 @@
             padding: 5vh;
         }
         .quizBoxHint {
-            padding: 5vh;
+            padding: 5vh 0;
             display: none;
         }
-        .quizMain {
+        .quizMain, .taskMain, .watchMain {
             display: none;
         }
 
@@ -52,79 +53,112 @@
 </head>
 <body>
     <h4>Medyk! Pomocy!</h4>
-    <h5>Niestety nie wszyscy członkowie zespołu byli wystarczająco uważni przy transporcie ładunków. Jeden z nich podrzucał nim a gdy ten upadł – został raniony przez odłamki w miejscach, które wskazaliście. 
-        Od momentu w którym zaczniecie ranny ma jęczeć, płakać, krzyczeć z bólu. Każda rana to masywny krwotok bez utraty przytomności. 
-        Na udzielenie pomocy macie 10minut po tym czasie pacjent wykrwawi się na śmierć. Po wykonaniu zadania  wykonać zdjęcie pacjenta i przesłać do dowództwa. 
-        Przystąpić do udzielania pomocy drugiemu pacjentowi. Kolejność udzielania pomocy według kategorii zagrożenia życia. Hasło: </h5>
-    <div>Karta obserwacji</div>
+    <div>Rozwiążcie wspólnie poniższy test <u>wielokrotnego</u> wyboru, a następnie przystąpcie do wykonania zadania</div>
     <hr>
     <button id="quizStart">Rozpocznij test</button>
     <div class="quizMain">
-        <div>Grupa rozpoczęła pościg - wskażcie, które jednostki w nim uczetniczą</div>
-        <div class="questionTab" id="questionOne"><b>Piechota</b></div>
-        <img src="./quizImg/ukr.jpeg" class="quizBox wrong" id="ukr"/>
-        <img src="./quizImg/pol.jpeg" class="quizBox wrong" id="pol"/>
-        <img src="./quizImg/green.jpg" class="quizBox correct" id="rus"/>
+    <ol>
+        <li class="questionTab" id="questionOne"><b>Jaką metodę stosujemy do prowadzenia wywiadu ratunkowego:</b></li>
+        <p class="quizBox wrong" id="abc">ABC </p>
+        <p class="quizBox wrong" id="face">FACE</p>
+        <p class="quizBox correct"id="sample">SAMPLE</p>
         <br/>
-            <img src="./quizImg/ukrhint.jpg" class="quizBoxHint hintOne" id="ukrhint"/>
-            <img src="./quizImg/polhint.jpg" class="quizBoxHint hintOne" id="polhint"/>
-            <img src="./quizImg/rushint.jpg" class="quizBoxHint hintOne" id="rushint"/>
-        <button class="quizBtn" id="btnHint1">Podpowiedź</button>
+            <img src="./icons/FAimgs/SAMPLE.JPG" class="quizBoxHint hintOne" id="ukrhint"/>
+        <button class="quizBtn" id="btnHint1">Wyjaśnienie</button>
         <hr>
-        <div class="questionTab" id="questionTwo">Wozy Opancerzone</div>
-        <img src="./quizImg/btr80.jpg" class="quizBox wrong" id="btr"/>
-        <img src="./quizImg/bmp.jpg" class="quizBox correct" id="bmp"/>
-        <img src="./quizImg/m113.jpg" class="quizBox wrong" id="m113"/>
+        <li class="questionTab" id="questionTwo">Poszkodowanego w wypadku drogowym należy wyciągać z pojazdu gdy:</li>
+        <p class="quizBox correct">Osoba jest nieprzytomna bez oznak życia</p>
+        <p class="quizBox correct">Pojazd znajduje się w krytycznie niebezpiecznym miejscu: skarpa, przejazd kolejowy, pali się lub zagraża mu inne niebezpieczeństwo zewnętrzne</p>
+        <p class="quizBox wrong">Poszkodowany jest przytomny, nie ma widocznych obrażeń i deklaruje, że sam może chodzić</p>
         <br/>
-            <img src="./quizImg/btr80hint.jpg" class="quizBoxHint hintTwo" id="btrhint"/>
-            <img src="./quizImg/bmphint.jpg" class="quizBoxHint hintTwo" id="bmphint"/>
-            <img src="./quizImg/m113hint.jpg" class="quizBoxHint hintTwo" id="m113hint"/>
-        <button class="quizBtn" id="btnHint2">Podpowiedź</button>
+        <img src="./icons/FAimgs/kogo wyciagac.JPG" class="quizBoxHint hintTwo"/>
+        <img src="./icons/FAimgs/kogo wyciagac 2.JPG" class="quizBoxHint hintTwo" />
+        <button class="quizBtn" id="btnHint2">Wyjaśnienie</button>
         <hr>
-        <div class="questionTab" id="questionThree">Czołgi</div>
-        <img src="./quizImg/t72.jpg" class="quizBox correct" id="t72"/>
-        <img src="./quizImg/leo.jpg" class="quizBox wrong" id="leo"/>
-        <img src="./quizImg/t34.jpg" class="quizBox wrong" id="t34"/>
+        <li class="questionTab" id="questionThree">W trakcie prowadzenia akcji resuscytacyjnej trzeba wykonywać zawsze w proporcjach 30 uciśnięć i 2 wdechy</li>
+        <p class="quizBox wrong">Prawda</p>
+        <p class="quizBox correct">Fałsz</p>
         <br/>
-            <img src="./quizImg/t72hint.jpg" class="quizBoxHint hintThree" id="t72hint"/>
-            <img src="./quizImg/leohint.jpeg" class="quizBoxHint hintThree" id="leohint"/>
-            <img src="./quizImg/t34hint.jpg" class="quizBoxHint hintThree" id="t34hint"/>
-        <button class="quizBtn" id="btnHint3">Podpowiedź</button>
+            <p class="quizBoxHint hintThree">Badania wskazują, że osoby niemedyczne dwukrotnie rzadziej decydują się podjąć resuscytacji z wykorzystaniem wdechów oraz jest ona 2 razy wolniejsza niż w przypadku samych ucisków i często nieskuteczna (możliwość wentylacji żołądka zamiast płuc). Ilość tlenu we krwi w początkowej fazie resuscytacji jest wystarczająca do prowadzenia akcji wyłącznie przez uciśnięcia do czasu przyjazdu służb ratunkowych. W czasach COVID wentylacja poszkodowanego bez specjalistycznego sprzętu (worek ambu) jest niezalecana.</p>
+        <button class="quizBtn" id="btnHint3">Wyjaśnienie</button>
         <hr>
-        <div class="questionTab" id="questionFour">Śmigłowce</div>
-        <img src="./quizImg/mi8.jpg" class="quizBox wrong" id="mi8"/>
-        <img src="./quizImg/mi24.jpg" class="quizBox correct" id="mi24"/>
-        <img src="./quizImg/sokol.jpg" class="quizBox wrong" id="sokol"/>
-        <br/>
-            <img src="./quizImg/mi8hint.jpeg" class="quizBoxHint hintFour" id="mi8hint"/>
-            <img src="./quizImg/mi24hint.jpeg" class="quizBoxHint hintFour" id="mi24hint"/>
-            <img src="./quizImg/sokolhint.jpg" class="quizBoxHint hintFour" id="sokolhint"/>
-        <button class="quizBtn" id="btnHint4">Podpowiedź</button>
+        <li class="questionTab" id="questionFour">Czy motocykliście po wypadku trzeba zdejmować kask?</li>
+        <p class="quizBox wrong"> Tak – zawsze zdejmujemy żeby ocenić stan głowy</p>
+        <p class="quizBox wrong">Tak – zawsze zdejmujemy do resuscytacji</p>
+        <p class="quizBox correct">Nie – jeżeli drogi oddechowe są drożne, rozpinamy kask i odchylamy szybkę, resuscytację wykonujemy bez wdechów</p>
         <hr>
-        <div class="questionTab" id="questionFive">Samoloty</div>
-        <img src="./quizImg/mig29.jpg" class="quizBox correct" id="mig29"/>
-        <img src="./quizImg/f16.jpg" class="quizBox wrong" id="f16"/>
-        <img src="./quizImg/a10.jpg" class="quizBox wrong" id="a10"/>
+        <li class="questionTab" id="questionFive">Przy podejrzeniu złamania kończyny należy:</li>
+        <p class="quizBox correct">Unieruchomić miejsce złamania i najbliższe stawy</p>
+        <p class="quizBox wrong">Podać doustnie lek przeciwbólowy o silnym działaniu </p>
+        <p class="quizBox wrong">Obandażować kończynę w celu zmniejszenia obrzęku</p>
         <br/>
-            <img src="./quizImg/mig29hint.jpg" class="quizBoxHint hintFive" id="mighint"/>
-            <img src="./quizImg/f16hint.jpg" class="quizBoxHint hintFive" id="f16hint"/>
-            <img src="./quizImg/a10hint.jpeg" class="quizBoxHint hintFive" id="a10hint"/>
-        <button class="quizBtn" id="btnHint5">Podpowiedź</button>
-        <hr/>
+        <hr>
+        <li class="questionTab" id="questionSix">Którą stroną folii NRC (koc życia) należy owinąć poszkodowanego w oczekiwaniu na pomoc:</li>
+        <p class="quizBox wrong">Żółtą do słoneczka – złota na zewnątrz</p>
+        <p class="quizBox wrong">Srebrną do księżyca – srebrna na zewnątrz </p>
+        <p class="quizBox correct">Bez znaczenia, ważne żeby szczelnie okryć poszkodowanego</p>
+        <br/>
+        <hr>
+        <li class="questionTab" id="questionSeven">Co oznaczają poszczególne litery w metodzie FAST ? (diagnoza udaru mózgu):</li>
+        <p class="quizBox correct">Face Arm Speech Time (twarz, ramię, mowa, czas)</p>
+        <p class="quizBox wrong">Forhead Alergies Symptoms Time (czoło, alergie, symptomy, czas)</p>
+        <p class="quizBox wrong">Face Arm Sequence Temperature (twarz, ramie, sekwencja, temperatura)</p>
+        <br/>
+            <img src="./icons/FAimgs/FAS.JPG" class="quizBoxHint hintSeven"/>
+            <img src="./icons/FAimgs/zawal-udar.JPG" class="quizBoxHint hintSeven" />
+        <button class="quizBtn" id="btnHint7">Wyjaśnienie</button>
+        <hr>
+        <li class="questionTab" id="questionEight">W krajach rozwiniętych pierwszą przyczynę zgonu w populacji dorosłej stanowią</li>
+        <p class="quizBox wrong">Wypadki drogowe</p>
+        <p class="quizBox wrong">Choroby nowotworowe</p>
+        <p class="quizBox correct">Choroby układu krążenia</p>
+        <br/>
+        <hr>
+        <li class="questionTab" id="questionNine">Zabiegi resuscytacyjne należy prowadzić do chwili:</li>
+        <p class="quizBox correct">Przyjazdu specjalistycznych służb medycznych</p>
+        <p class="quizBox correct">Gdy poszkodowany zacznie prawidłowo oddychać</p>
+        <p class="quizBox correct">Gdy ulegniesz wyczerpaniu</p>
+        <br/>
+        <hr>
+        <li class="questionTab" id="questionNine">Opaskę uciskową stosuje się gdy:</li>
+        <p class="quizBox correct">Zagrażające życiu krwotoki, w szczególności w wyniku amputacji lub zmiażdżenia całej lub części kończyny</p>
+        <p class="quizBox correct">Krwotoki z kończyn nie możliwe do opanowania innymi metodami</p>
+        <p class="quizBox correct">Krwotoki z uwięzionych kończyn w miejscach trudno dostępnych dla ratowników.</p>
+        <p class="quizBox correct">Krwotoki występujące wspólnie z niedrożnością dróg oddechowych lub zatrzymaniem krążenia. Szybkie zatrzymanie krwotoku za pomocą opaski pozwala na interwencje w innym obszarze</p>
+        <p class="quizBox correct">Zdarzenia o charakterze masowym, w których ilość sił i środków nie pozwala na kontrolę krwotoków innymi metodami</p>
+        <br/>
+    </ol>
         <button type="submit" class="quizBtn" id="btnEnd">Zatwierdź kartę obserwacji</button>
         <div id="quizResult">Twój wynik za zadanie:</div>
     </div>
+    <br/>
+    <hr>    
+    <button id="watchStart">Obejrzyj nagrania</button>
+    <div class="watchMain" >
+    <iframe class="embed-responsive-item"id="ytplayer" type="text/html" width="100%" height="60%" src="https://www.youtube.com/embed/ApzANyz15KI"
+        frameborder="0" allowfullscreen></iframe>
+    <iframe class="embed-responsive-item"id="ytplayer" type="text/html" width="100%" height="60%" src="https://www.youtube.com/embed/vsw7AB9sVxs"
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+    <br/>
+    <hr>    
+    <button id="taskStart">Wykonaj zadanie</button>
+    <div class="taskMain" >
+        <h5>Niestety nie wszyscy członkowie zespołu byli wystarczająco uważni przy transporcie ładunków. Jeden z nich podrzucał nim a gdy ten upadł – został raniony przez odłamki w miejscach, które wskazaliście. 
+        Od momentu w którym zaczniecie ranny ma jęczeć, płakać, krzyczeć z bólu. Każda rana to masywny krwotok bez utraty przytomności. 
+        Na udzielenie pomocy macie 5 minut po tym czasie pacjent wykrwawi się na śmierć. Po zaopatrzeniu musicie przetransportować rannego na odległość 150 metrów na zachód do najbliższego skrzyżowania.
+        Po wykonaniu zadania wykonać zdjęcie pacjenta i przesłać do dowództwa. 
+    </h5>
+    </div> 
 </body>
 <script>
-    const correctAnswersTab= [
-        bmp, t72, mi24, mig29
-    ]
     const quizStart = document.querySelector('#quizStart');
+    const taskStart = document.querySelector('#taskStart');
+    const watchStart = document.querySelector('#watchStart');
     const hintOneBtn = document.querySelector('#btnHint1');
     const hintTwoBtn = document.querySelector('#btnHint2');
     const hintThreeBtn = document.querySelector('#btnHint3');
-    const hintFourBtn = document.querySelector('#btnHint4');
-    const hintFiveBtn = document.querySelector('#btnHint5');
+    const hintSevenBtn = document.querySelector('#btnHint7');
     const wrongAnswers = document.querySelectorAll('.wrong');
     const correctAnswers = document.querySelectorAll('.correct');
     const endQuiz = document.querySelector('#btnEnd');
@@ -165,35 +199,42 @@
         main.target.style.display="none"
     })
 
-   hintOneBtn.addEventListener('click', (btn) => {
+    taskStart.addEventListener('click', (main) => {
+        document.querySelector('.taskMain').style.display="block"
+        main.target.style.display="none"
+    })
+
+    watchStart.addEventListener('click', (main) => {
+        document.querySelector('.watchMain').style.display="block"
+        main.target.style.display="none"
+    })
+
+    hintOneBtn.addEventListener('click', (btn) => {
         document.querySelectorAll('.hintOne').forEach((item)=>item.style.display="inline-block");
         btn.target.style.display="none";
-        quizResult-=1
+        //quizResult-=1
     })
     hintTwoBtn.addEventListener('click', (btn) => {
         document.querySelectorAll('.hintTwo').forEach((item)=>item.style.display="inline-block");
         btn.target.style.display="none";
-        quizResult-=1
+        //quizResult-=1
     })
     hintThreeBtn.addEventListener('click', (btn) => {
         document.querySelectorAll('.hintThree').forEach((item)=>item.style.display="inline-block");
         btn.target.style.display="none";
-        quizResult-=1
+        //quizResult-=1
     })
-    hintFourBtn.addEventListener('click', (btn) => {
-        document.querySelectorAll('.hintFour').forEach((item)=>item.style.display="inline-block");
+    hintSevenBtn.addEventListener('click', (btn) => {
+        document.querySelectorAll('.hintSeven').forEach((item)=>item.style.display="inline-block");
         btn.target.style.display="none";
-        quizResult-=1
-    })
-    hintFiveBtn.addEventListener('click', (btn) => {
-        document.querySelectorAll('.hintFive').forEach((item)=>item.style.display="inline-block");
-        btn.target.style.display="none";
-        quizResult-=1
+        //quizResult-=1
     })
     endQuiz.addEventListener('click', (btn) => {
         let result = document.querySelector('#quizResult');
-        if (quizResult>0){
-            result.textContent=`Zdobyliście: ${quizResult} punktów, Hasło brzmi: zieloni`;
+        if (quizResult>0 && quizResult>17){
+            result.textContent=`Zdobyliście: ${quizResult}/34 punktów - ${Math.floor(quizResult/34*100)}%, Hasło brzmi: zawał`;
+        } else if(quizResult>0 && quizResult<=17){
+            result.textContent=`Zdobyliście: ${quizResult}/34 punktów - ${Math.floor(quizResult/34*100)}%, Musicie się bardziej postarać, minimalny próg to 51%`;
         } else {
             result.textContent=`Zdobyliście: 0 punktów`
         }
